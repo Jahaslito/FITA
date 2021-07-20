@@ -39,6 +39,10 @@
                         <i class="fas fa-clipboard-list fa-2x"></i>
                         <p class="list">Screening Data</p>
                     </div>
+                    <div class="side-bar-list">
+                        <i class="fas fa-camera fa-2x"></i>
+                        <p class="list">Biometric</p>
+                    </div>
                 </div>
             </aside>
             <div id="right-bar">
@@ -158,6 +162,6 @@
         </div>
   
 </body>
-
+<script src="{{asset('js/common.js')}}"></script>
 <script src="{{asset('js/landing.js')}}"></script>
 </html>

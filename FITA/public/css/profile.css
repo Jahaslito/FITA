@@ -1,0 +1,203 @@
+body{
+    height: fit-content;
+}
+#right-bar{
+    display: flex;
+    flex-direction: row;
+}
+#right-left-bar{
+    flex: 35%;
+    border: none;
+
+}
+#right-right-bar{
+    flex: 65%;
+    border: none;
+
+}
+.card{
+    border-radius: 35px;
+    box-shadow: 0px 12px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid #b1acac;
+}
+.button{
+    border-radius: 10px;
+    border: none;
+    background-color: #1f2937;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+}
+#profile-photo-card, #percentage-card{
+    margin: 30px 30px;
+    text-align: center;
+}
+#edit-information-card{
+    margin: 30px 30px;
+}
+
+#image-div{
+    background-size: contain;
+}
+#image-div img{
+    height: 110px;
+    width: 110px;
+    border-radius: 50px;
+    margin: 15px 5px;
+}
+#image-button{
+    width: 150px;
+    padding: 10px 5px;
+}
+p#percentage{
+    font-size: 40px;
+}
+p{
+    margin: 10px;
+    font-size: 18px;
+}
+#percentage-card{
+    height:200px;
+    border-radius: 20px;
+}
+#percentage-card p{
+    margin-bottom: 30px;
+}
+
+.progress-bar{
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid #707070;
+    height: 10px;
+    border-radius: 10px;
+}
+.progress-status{
+    background-color: #1f2937;
+    width: 60%;
+    height: 10px;
+}
+form{
+    display: flex;
+    flex-direction: row;
+}
+.form-left-hand, .form-right-hand{
+    flex: 50%;
+    padding: 10px 20px;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+label, input{
+    margin: 5px;
+    padding: 0px;
+}
+input{
+    width: 60%;
+    height: 20px;
+    margin-top: 4px;
+    margin-bottom: 15px;
+    border: none;
+    border: 1px solid #8a8888;
+}
+label{
+    color:#615D5D;
+    margin-bottom: 0px;
+}
+.save-button{
+    padding: 5px;
+    width: 120px;
+    text-align: center;
+    margin-top: 20px;
+}
+h1{
+    color: Black;
+    text-align: center;
+}
+h3{
+    margin-left: 27px;
+    margin-bottom: 5px;
+}
+
+#account-setting, #change-password, #personal-detials{
+    margin-top: 35px;
+    margin-bottom: 0px;
+}
+
+#email{
+    width: 28%;
+}
+#delete-button{
+    padding: 5px;
+    width: 120px;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #f8463d;
+}
+
+.button-group{
+    display: inline-block;
+}
+
+.button-group button{
+    margin-right: 50px;
+}
+
+/* 794 */
+@media only screen and (max-width: 900px) {
+    #main{
+        height: fit-content;
+    }
+    #main #right-bar{
+        flex: 100%;
+    }
+    #main aside{
+        display: none;
+        width: 0%;
+        padding-top: 30px;
+    }
+    .folder{
+        display: block;
+        padding: 10px;
+    }
+    /* subject to change  */
+    .overlay {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0px;
+        left: 0;
+        background-color: rgb(87, 184, 70,0.9);
+        overflow-x: hidden;
+        transition: 0.5s;
+        
+    }
+    
+    .overlay-content {
+        position: relative;
+        top: 25%;
+        width: 100%;
+        text-align: center;
+        margin-top: 30px;
+    }
+    .overlay .closebtn {
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: 5px;
+        font-size: 60px;
+        color: #1f2937;
+    }
+    #right-bar{
+        display: flex;
+        flex-direction: column;
+    }
+    #right-right-bar{
+        flex: 100%;
+    }
+    #right-left-bar{
+        flex: 80%;
+    }
+}

@@ -89,7 +89,7 @@ body{
     color: white;
     padding-left: 5%;
     cursor: pointer;
-
+    margin-bottom: 15px;
 }
 .side-bar-list:hover{
     color: #1f2937;
@@ -174,7 +174,7 @@ input{
 #second-question, #third-question, #fourth-question{
     display: none;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1080px) {
     #main{
         height: fit-content;
     }
@@ -193,7 +193,7 @@ input{
     #form-box{
         width: 80%;
     }
-    .folder{
+    #folder{
         display: block;
         padding: 10px;
     }

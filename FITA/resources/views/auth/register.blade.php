@@ -74,7 +74,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <a class="btn btn-link " href="{{ route('login') }}" style="margin-right: 60px">
+                            <a class="btn btn-link " href="{{ route('login') }}" style="margin-left: 60px">
                                 {{ __('Login') }}
                             </a>
                         </div>
