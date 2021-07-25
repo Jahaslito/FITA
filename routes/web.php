@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScreeningDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,4 @@ Route::post('/personal_details',[ProfileController::class,'update_personal_detai
 Route::post('/password',[ProfileController::class,'change_password'])->name('change_password');
 Route::post('/setting',[ProfileController::class,'change_email'])->name('change_email');
 Route::post('/upload-profile-image', [ ProfileController::class, 'store_profile_image' ]);
+Route::post('/submit-screening-data', [ScreeningDataController::class,'store_screening_data']);

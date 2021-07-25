@@ -40,3 +40,10 @@ function logout() {
 				}
     });
 }
+
+function profile(){
+    window.location.href="/profile";
+}
+function screeningData(){
+    window.location.href="/home";
+}

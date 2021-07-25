@@ -11,11 +11,13 @@
     <title>Landing</title>
 </head>
 <body>
-   
+    @php 
+    $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;
+    @endphp
         <div id="top-bar">
             <h1>LOGO</h1>
             <div id="profile-box" class="right">
-                <img src="{{asset('images/profile.jpg')}}" alt="Profile Photo">
+                <img src="{{asset($profile_photo_path)}}" alt="Profile Photo">
                 <p> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                 <!-- <span>></span> -->
                 <div class="dropdown">
@@ -33,16 +35,16 @@
                 <div class="overlay-content">
                     <div class="side-bar-list">
                         <i class="fas fa-user-circle fa-2x"></i>
-                        <p class="list">Profile</p>
+                        <p class="list" onclick="profile()">Profile</p>
                     </div>
                     <div class="side-bar-list">
                         <i class="fas fa-clipboard-list fa-2x"></i>
-                        <p class="list">Screening Data</p>
+                        <p class="list" onclick="screeningData()">Screening Data</p>
                     </div>
-                    <div class="side-bar-list">
+                    {{-- <div class="side-bar-list">
                         <i class="fas fa-camera fa-2x"></i>
-                        <p class="list">Biometric</p>
-                    </div>
+                        <p class="list" onclick="biometric()">Biometric</p>
+                    </div> --}}
                 </div>
             </aside>
             <div id="right-bar">
@@ -53,7 +55,7 @@
                     <p id="date">{{now()->format('F')}} {{now()->format('d')}}, {{now()->format('Y')}}</p>
                 </div>
                 <div id="form-box">
-                    <form action="#">
+                    <form action="#" id="screening-data-form">
                         <div class="question" id="first-question">
                             <p class="label">Question 1</p>
                             <p class="question">Check one or more of the following symptoms if you have experienced them
@@ -92,7 +94,7 @@
                                     <label for="others">Nausea, diarrhea, vomiting</label>
                                 </div>
                                 <div class="alternatives-list-item">
-                                    <input type="checkbox" name="none" id="none" value="none">
+                                    <input type="checkbox" name="none" id="none" value="none"checked>
                                     <label for="fatigue">None</label>
                                 </div>
                             </div>
@@ -102,15 +104,15 @@
                             <p class="question">Have you been in close physical contact in the last 14 days with anyone who is known to have laboratory-confirmed COVID-19?</p>
                             <div class="alternatives-list">
                                 <div class="alternatives-list-item">
-                                    <input type="radio" id="positive_contact_w_infected" name="contact_w_infected" value="yes">
+                                    <input type="radio" id="positive_contact_w_infected" name="question_two" value="yes">
                                     <label for="positive_contact_w_infected">Yes</label>
                                 </div>
                                 <div class="alternatives-list-item">
-                                    <input type="radio" id="negative_contact_w_infected" name="contact_w_infected" value="no">
+                                    <input type="radio" id="negative_contact_w_infected" name="question_two" value="no">
                                     <label for="negative_contact_w_infected">No</label>
                                 </div>
                                 <div class="alternatives-list-item">
-                                    <input type="radio" id="cynical_contact_w_infected" name="contact_w_infected" value="maybe">
+                                    <input type="radio" id="cynical_contact_w_infected" name="question_two" value="maybe">
                                     <label for="cynical_contact_w_infected">Maybe</label>
                                 </div>
                             </div>
@@ -120,15 +122,15 @@
                             <p class="question">Have you been in close physical contact in the last 14 days with anyone who has any symptoms consistent with COVID-19?</p>
                             <div class="alternatives-list">
                                 <div class="alternatives-list-item">
-                                    <input type="radio" id="positive_contact_w_symptom" name="contact_w_symptom" value="yes">
+                                    <input type="radio" id="positive_contact_w_symptom" name="question_three" value="yes">
                                     <label for="positive_contact_w_symptom">Yes</label>
                                 </div>
                                 <div class="alternatives-list-item">
-                                    <input type="radio" id="negative_contact_w_symptom" name="contact_w_symptom" value="no">
+                                    <input type="radio" id="negative_contact_w_symptom" name="question_three" value="no">
                                     <label for="negative_contact_w_symptom">No</label>
                                 </div>
                                 <div class="alternatives-list-item">
-                                    <input type="radio" id="cynical_contact_w_symptom" name="contact_w_symptom" value="maybe">
+                                    <input type="radio" id="cynical_contact_w_symptom" name="question_three" value="maybe">
                                     <label for="cynical_contact_w_symptom">Maybe</label>
                                 </div>
                             </div>
@@ -138,17 +140,20 @@
                             <p class="question">Have you traveled to places with high covid-19 incidences in the past 10 days?</p>
                             <div class="alternatives-list">
                                 <div class="alternatives-list-item">
-                                    <input type="radio" id="positive_traveled" name="traveled" value="yes">
+                                    <input type="radio" id="positive_traveled" name="question_four" value="yes">
                                     <label for="positive_traveled">Yes</label>
                                 </div>
                                 <div class="alternatives-list-item">
-                                    <input type="radio" id="negative_traveled" name="traveled" value="no">
+                                    <input type="radio" id="negative_traveled" name="question_four" value="no">
                                     <label for="negative_traveled">No</label>
                                 </div>
                                 <div class="alternatives-list-item">
-                                    <input type="radio" id="cynical_traveled" name="traveled" value="maybe">
+                                    <input type="radio" id="cynical_traveled" name="question_four" value="maybe">
                                     <label for="cynical_traveled">Maybe</label>
                                 </div>
+                            </div>
+                            <div id="response_message">
+
                             </div>
                         </div>
                         <div class="buttons-container">

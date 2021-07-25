@@ -91,16 +91,17 @@ body{
     color: white;
     padding-left: 5%;
     cursor: pointer;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .side-bar-list:hover{
     color: #1f2937;
 }
 
-.side-bar-list p{
+.side-bar-list p.list{
     padding: 0px 10px;
     font-size: 20px;
     letter-spacing: 1px;
+    margin: 10px;
    
 }
 h1{
@@ -267,3 +268,22 @@ input{
   .dropdown:hover .dropdown-content {
     display: block;
   }
+  #response_message{
+      display: none;
+  }
+  .success, .error{
+    width: 60% ;
+    height: fit-content;
+    text-align: center;
+    padding: 10px;
+}
+.success{
+    color: #155724;
+    background-color:#d4edda;
+    border-radius: 10px;
+}
+.error{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-radius: 10px;
+}
