@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('auth.index');
 });
 
-Auth::routes();
+Auth::routes(['verify'=> true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
