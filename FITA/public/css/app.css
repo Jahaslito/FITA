@@ -10002,3 +10002,19 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.success, .error{
+  width: 60% ;
+  height: 35px;
+  text-align: center;
+  padding-top: 10px;
+}
+.success{
+  color: #155724;
+  background-color:#d4edda;
+  border-radius: 10px;
+}
+.error{
+  color: #721c24;
+  background-color: #f8d7da;
+  border-radius: 10px;
+}

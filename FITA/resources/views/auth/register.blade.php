@@ -17,10 +17,23 @@
                         @csrf
 
                         <div class="wrap-input100  m-b-26">
-                            <label for="name" class="label-input100">{{ __('Name') }}</label>
+                            <label for="first_name" class="label-input100">{{ __('First Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" placeholder="Enter your name" class="input100 form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="first_name" type="text" placeholder="Enter your first name" class="input100 form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="wrap-input100  m-b-26">
+                            <label for="last_name" class="label-input100">{{ __('Last Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="last_name" type="text" placeholder="Enter your last name" class="input100 form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">

@@ -13,29 +13,28 @@
                     @csrf
 
                     <div class="wrap-input100 form-group m-b-26" >
-                        <label for="email" class="label-input100">{{ __('Username') }}</label>
+                        <label for="email" class="label-input100">{{ __('Email') }}</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" placeholder="Enter your username" class=" input100 form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                            <input id="email" type="email" placeholder="Enter your username" class=" input100 form-control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                            <div class="error">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
+
                     </div>
 
                     <div class="wrap-input100 form-group m-b-18">
                         <label for="password" class="label-input100">{{ __('Password') }}</label>
 
                         <div class="col-md-6">
-                            <input id="password" type="password" placeholder="Enter your password" class=" input100 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                            <input id="password" type="password" placeholder="Enter your password" class=" input100 form-control" name="password" required autocomplete="current-password">
+                             @error('password')
+                            <div class="error">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                     </div>

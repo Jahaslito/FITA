@@ -16,12 +16,12 @@
             <h1>LOGO</h1>
             <div id="profile-box" class="right">
                 <img src="{{asset('images/profile.jpg')}}" alt="Profile Photo">
-                <p> {{ Auth::user()->name }}</p>
+                <p> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                 <!-- <span>></span> -->
                 <div class="dropdown">
                     <i class="fa fa-caret-down" id="dropdown-icon"></i>
                     <div class="dropdown-content">
-                      <a href="#" onclick="logout()">Logout</a>                    
+                      <a href="" onclick="logout()">Logout</a>                    
                     </div>
                   </div> 
                 

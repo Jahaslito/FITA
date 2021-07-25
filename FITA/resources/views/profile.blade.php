@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://kit.fontawesome.com/37280917ff.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     <title>Landing</title>
@@ -17,12 +17,12 @@
             <h1>LOGO</h1>
             <div id="profile-box" class="right">
                 <img src="{{asset('images/profile.jpg')}}" alt="Profile Photo">
-                <p> {{ Auth::user()->name }}</p>
+                <p> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                 <!-- <span>></span> -->
                 <div class="dropdown">
                     <i class="fa fa-caret-down" id="dropdown-icon"></i>
                     <div class="dropdown-content">
-                      <a href="#">Logout</a>                    
+                      <a onclick="logout()">Logout</a>                    
                     </div>
                 </div> 
                 
@@ -50,61 +50,62 @@
                 <i class="fas fa-align-justify fa-2x" id="folder" onclick="openOverlay()"></i>
                 <div id="right-left-bar">
                     <div id="profile-photo-card" class="card">
-                        <p> {{ Auth::user()->name }}</p>
+                        <p> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                         <p>122475</p>
                         <div id="image-div">
                             <img src="{{asset('images/profile.jpg')}}" alt="Profile Image">
                         </div>
-                        <button id="image-button" class="button">Upload New Photo</button>
-                        <p>Maximum allowed size is 1MB</p>
+                        <button id="image-button" class="button">Upload Photo</button>
+                        <p id="extra-info">Maximum allowed size is 1MB</p>
                     </div>
-                    <div id="percentage-card" class="card">
+                    {{-- <div id="percentage-card" class="card">
                         <p>Profile Complition</p>
                         <p id="percentage">60%</p>
                         <div class="progress-bar">
                             <div class="progress-status"></div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div id="right-right-bar">
-                    <div id="edit-information-card" class="card">
+                    <div id="edit-information-card" >
                         <h1>Edit Information</h1>
-                        <div id="personal-details">
+                        <div id="personal-details" class="card">
                             <h3>Personal Details</h3>
-                            <form action="#" method="post">
+                            <div class="form">
                                 <div class="form-left-hand">
                                     <div class="input">
                                         <label for="first-name">First Name</label>
-                                        <input type="text" id="first-name" name="first_name">
+                                        <input type="text" id="first-name" name="first_name" value="{{Auth::user()->first_name}}">
                                     </div>
                                     <div class="input">
                                         <label for="last-name">Last Name</label>
-                                        <input type="text" id="last-name" name="last_name">
+                                        <input type="text" id="last-name" name="last_name" value="{{Auth::user()->last_name}}">
                                     </div>
                                     <div class="input">
                                         <label for="phone-number">Phone Number</label>
-                                        <input type="text" id="phone-number" name="phone_number" placeholder="+251">
+                                        <input type="text" id="phone-number" name="phone_number" placeholder="+251" value="{{ Auth::user()->phone_number}}">
                                     </div>
                                 </div>
                                 <div class="form-right-hand">
                                     <div class="input">
                                         <label for="address">Address</label>
-                                        <input type="text" id="address" name="address">
+                                        <input type="text" id="address" name="address" value="{{ Auth::user()->address}}">
                                     </div>
                                     <div class="input">
-                                        <label for="dob">Date of Birth</label>
-                                        <input type="date" id="dob" name="dob">
+                                        <label for="date-of-birth">Date of Birth</label>
+                                        <input type="date" id="date-of-birth" name="date_of_birth" value="{{ Auth::user()->date_of_birth}}">
                                     </div>
+                                    <div id="personal-detail-message"></div>
                                     <div class="input" >
-                                    <button type="submit" class="button save-button"> Save Changes</button>
+                                    <button type="submit" id="update_personal_details" class="button save-button"> Save Changes</button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
 
-                        <div id="change-password">
+                        <div id="change-password" class="card">
                             <h3>Change Password</h3>
-                            <form action="#" method="post">
+                            <div class="form">
                                 <div class="form-left-hand">
                                     <div class="input">
                                         <label for="current-password">Current Password</label>
@@ -120,27 +121,29 @@
                                         <label for="verify-password">Verify Password</label>
                                         <input type="password" id="verify-password" name="verify_password">
                                     </div>
+                                    <div id="change-password-message"></div>
                                     <div class="input">
-                                    <button type="submit" class="button save-button"> Save Changes</button>
+                                    <button type="submit" id="change_password" class="button save-button"> Save Changes</button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        <div id="account-setting">
-                            <h3>Account Seeting</h3>
-                            <form action="#" method="post">
+                        <div id="account-setting" class="card">
+                            <h3>Account Setting</h3>
+                            <div class="form">
                                 <div class="form-left-hand">
                                     <div class="input">
                                         <label for="email">Email</label>
-                                        <input type="text" id="email" name="email">
+                                        <input type="email" id="email" name="email" value="{{Auth::user()->email}}">
                                     </div>
                                     <div class="button-group">
-                                    <button type="submit" class="button save-button"> Save Changes</button>
-                                    <button type="submit" class="button" id="delete-button"> Delete Account</button>
+                                        <div id="change-email-message"></div>
+                                    <button type="submit" id="change_email" class="button save-button"> Save Changes</button>
+                                    {{-- <button type="submit" class="button" id="delete-button"> Delete Account</button> --}}
                                     </div>
                                     
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

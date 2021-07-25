@@ -65,9 +65,11 @@ body{
     flex: 82%;
     background-color: white;
     height: 100%;
+    margin: 0px;
+    border-radius: 25px;
 }
 #main aside{
-    flex: 18%;
+    flex: 14%;
     padding-top: 30px;
     height: 100%;
 }
@@ -174,7 +176,7 @@ input{
 #second-question, #third-question, #fourth-question{
     display: none;
 }
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1180px) {
     #main{
         height: fit-content;
     }
@@ -225,6 +227,21 @@ input{
         right: 5px;
         font-size: 60px;
         color: #1f2937;
+    }
+    #image-div{
+        width: 230px;
+    }
+    #image-div img{
+        height: 110px;
+        width: 110px;
+        border-radius: 50px;
+        margin: 15px auto;
+    }
+    #profile-photo-card{
+        margin-left: 0px;
+    }
+    .success,.error{
+        width: 80%;
     }
 }
 
