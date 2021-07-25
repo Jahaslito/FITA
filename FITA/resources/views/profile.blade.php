@@ -52,10 +52,13 @@
                     <div id="profile-photo-card" class="card">
                         <p> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                         <p>122475</p>
-                        <div id="image-div">
-                            <img src="{{asset('images/profile.jpg')}}" alt="Profile Image">
+                        <div id="image-div" onclick="selectPhoto()">
+                            <img src="{{asset('images/profile.jpg')}}" alt="Profile Image" id="profile_photo_holder">
+                            <i class="fas fa-camera fa-2x"></i>
                         </div>
-                        <button id="image-button" class="button">Upload Photo</button>
+                        <input type="file" name="profile_photo" id="profile_photo" onchange="changeImage(this)">
+                        <button id="image-button" class="button">Save Photo</button>
+                        <div id="photo-upload-message"></div>
                         <p id="extra-info">Maximum allowed size is 1MB</p>
                     </div>
                     {{-- <div id="percentage-card" class="card">

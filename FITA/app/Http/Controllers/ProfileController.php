@@ -107,4 +107,23 @@ class ProfileController extends Controller
         return 'success';
 
     }
+    
+    public function store_profile_image(Request $request)
+    {
+        $userId= Auth::user()->id;
+        $user= User::find($userId);
+        $request->validate([
+            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          ]);
+
+        $photo= $request->file('profile_photo');
+        if ($photo) {
+        $imageExtension= $photo->extension();
+        $imageName = "profile_photo".$userId.'.'.$imageExtension;
+        $path = $photo->storeAs('photos', $imageName, 'public');
+        }
+        $user->profile_photo_path = $imageName;
+        $user->save();
+        return "success";
+    }
 }

@@ -26,3 +26,4 @@ Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::post('/personal_details',[ProfileController::class,'update_personal_details'])->name('personal_details');
 Route::post('/password',[ProfileController::class,'change_password'])->name('change_password');
 Route::post('/setting',[ProfileController::class,'change_email'])->name('change_email');
+Route::post('/upload-profile-image', [ ProfileController::class, 'store_profile_image' ]);

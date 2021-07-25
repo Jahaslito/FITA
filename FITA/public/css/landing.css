@@ -74,8 +74,8 @@ body{
     height: 100%;
 }
 #form-box{
-    border: 1px solid #cbcdcf;
-    box-shadow: 10px 10px rgb(241, 241, 241);
+    border: 1px solid #e0dddd;
+    box-shadow: 0px 12px 16px 0px rgba(0,0,0,0.2);
     border-radius: 20px;
     width: 60%;
     margin: 50px auto;
@@ -227,15 +227,6 @@ input{
         right: 5px;
         font-size: 60px;
         color: #1f2937;
-    }
-    #image-div{
-        width: 230px;
-    }
-    #image-div img{
-        height: 110px;
-        width: 110px;
-        border-radius: 50px;
-        margin: 15px auto;
     }
     #profile-photo-card{
         margin-left: 0px;

@@ -1,3 +1,19 @@
+function selectPhoto() {
+    document.getElementById("profile_photo").click();
+}
+function changeImage(input){
+    let imageHolder= document.getElementById("profile_photo_holder");
+    var file= input.files[0];
+    if (file) {
+        const reader= new FileReader();
+            reader.addEventListener('load', function(){
+            imageHolder.src = this.result;
+        });
+        reader.readAsDataURL(file);
+    }
+}
+let uploadProfileMessage = "";
+
 //Adding the csrf tkoen in ajax request 
 $.ajaxSetup({
     headers: {
@@ -106,7 +122,41 @@ $(document).ready(function() {
             });
         }  
      });
+     $("#image-button").click( function (event){
+         event.preventDefault();
+         //upload-profile-image
+         let uploadedImage= $('#profile_photo')[0].files[0];
+         console.log(uploadedImage);
+         let formData= new FormData();
+         formData.append("profile_photo",uploadedImage);
+        let messageBox=$("#photo-upload-message");
+       $.ajax({
+           url: '/upload-profile-image',
+           data: formData,
+           method: "post",
+           contentType: false,
+           processData: false,
+           success: function(result) {
+            if (result=='success') {
+                displayMessage(messageBox,"success","Profile Photo Updated Successfully!");
+            }else{
+                console.log(result);
+            }
+           },
+           error: function(result){
+            let error= result.responseJSON.errors.profile_photo;
+            error.forEach(concatenateMessage);
+            console.log(uploadProfileMessage);
+            displayMessage(messageBox,"error",uploadProfileMessage);
+            uploadProfileMessage=""
+           }
+       });
+     });
 });
+
+function concatenateMessage(item, index) {
+    uploadProfileMessage += item + "<br>"; 
+    }
 
 //To display error or success messages
 function displayMessage(messageBox,type,message) {

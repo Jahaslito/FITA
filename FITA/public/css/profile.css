@@ -42,13 +42,32 @@ body{
 
 #image-div{
     background-size: contain;
- 
+    text-align: center;
+    height: 110px;
+    width: 110px;
+    border-radius: 50px;
+    margin: 15px auto;
+    cursor: pointer;
+    background-color: #000000;
 }
 #image-div img{
     height: 110px;
     width: 110px;
     border-radius: 50px;
-    margin: 15px auto;
+    z-index: 3;
+}
+#image-div:hover img{
+    opacity: 0.5;
+}
+#image-div:hover i{
+    display: block;
+}
+#image-div i{
+    z-index: 2;
+    position: relative;
+    top: -75px;
+    color: white;
+    display: none;
 }
 #image-button{
     width: 120px;
@@ -208,9 +227,7 @@ h3{
     #right-left-bar{
         flex: 80%;
     }
-    #image-div{
-        width: auto;
-    }
+
     #profile-photo-card{
         margin-top: 35px;
     }
@@ -219,9 +236,14 @@ h3{
 #profile-photo-card #extra-info{
     font-size: 14px;
 }
-#personal-detail-message,#change-email-message,#change-password-message{
+#personal-detail-message,#change-email-message,#change-password-message,#photo-upload-message{
     display: none;
     width: 80%;
+}
+#photo-upload-message{
+    margin:10px auto;
+    height: 50px;
+    padding-top: 5px;
 }
 .success, .error{
     width: 60% ;
@@ -238,4 +260,7 @@ h3{
     color: #721c24;
     background-color: #f8d7da;
     border-radius: 10px;
+}
+#profile_photo{
+    display: none;
 }
