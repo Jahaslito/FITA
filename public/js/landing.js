@@ -6,7 +6,7 @@ $(document).ready(function(){
     let thirdQuestion= $("#third-question");
     let fourthQuestion= $("#fourth-question");
     let backButton=$("#back");
-    $("#submit").click(function(event){
+    $("#screening-data-form").submit(function(event){
         console.log("called");
         event.preventDefault();
         switch (questionCounter) {
@@ -24,7 +24,36 @@ $(document).ready(function(){
                 fourthQuestion.show();
                 break;
             case 4:
-                alert("functionality yet to come");
+                if (confirm("Do you want to submit the form?")) {
+                    let formData= new FormData(this);
+                let messageBox= $("#response_message");
+                $.ajax({
+                    type:'POST',
+                    url: '/submit-screening-data',
+                     data: formData,
+                     contentType: false,
+                     processData: false,
+                     success: function(result){
+                       if (result=='success') {
+                        displayMessage(messageBox,'success',"Data submitted successfully");
+                       }else{
+                        displayMessage(messageBox,'error',result);
+                       }
+                     },
+                     error: function(result){
+                         console.log(result);
+                        let error= result.responseJSON.errors;
+                        let concatenatedErrors="";
+                        if(error.question_two) {concatenatedErrors+= error.question_two[0]+"<br>"};
+                        if(error.question_three) {concatenatedErrors+= error.question_three[0]+"<br>"};
+                        if(error.question_four) {concatenatedErrors+= error.question_four[0]+"<br>"};
+                        
+                        displayMessage(messageBox,"error",concatenatedErrors);
+                        uploadProfileMessage=""
+                     }
+                 });
+                }
+                break;
             default:
                 break;
         }
@@ -50,4 +79,15 @@ $(document).ready(function(){
         questionCounter--;
     });
 });
+
+//To display error or success messages
+function displayMessage(messageBox,type,message) {
+    messageBox.html(message);
+    messageBox.addClass(type);
+    messageBox.css("display","block");
+    setTimeout(function() {
+        messageBox.css("display","none");
+        messageBox.removeClass(type);
+    }, 6000);
+}
 

@@ -32,6 +32,7 @@ body{
     margin: 30px 30px;
     margin-top: 90px;
     text-align: center;
+    height: fit-content;
 }
 #profile-photo-card p{
     font-size: 15px;
@@ -41,7 +42,7 @@ body{
 }
 
 #image-div{
-    background-size: contain;
+    background-size: cover;
     text-align: center;
     height: 110px;
     width: 110px;
@@ -239,15 +240,17 @@ h3{
 #personal-detail-message,#change-email-message,#change-password-message,#photo-upload-message{
     display: none;
     width: 80%;
+    height:fit-content;
 }
+
 #photo-upload-message{
     margin:10px auto;
-    height: 50px;
+    height: fit-content;
     padding-top: 5px;
 }
 .success, .error{
     width: 60% ;
-    height: 35px;
+    height: fit-content;
     text-align: center;
     padding-top: 10px;
 }

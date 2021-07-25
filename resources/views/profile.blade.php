@@ -12,11 +12,13 @@
     <title>Landing</title>
 </head>
 <body>
-   
+    @php 
+    $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;
+    @endphp
         <div id="top-bar">
             <h1>LOGO</h1>
             <div id="profile-box" class="right">
-                <img src="{{asset('images/profile.jpg')}}" alt="Profile Photo">
+                <img src="{{asset($profile_photo_path)}}" alt="Profile Photo">
                 <p> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                 <!-- <span>></span> -->
                 <div class="dropdown">
@@ -34,16 +36,16 @@
                 <div class="overlay-content">
                     <div class="side-bar-list">
                         <i class="fas fa-user-circle fa-2x"></i>
-                        <p class="list">Profile</p>
+                        <p class="list" onclick="profile()">Profile</p>
                     </div>
                     <div class="side-bar-list">
                         <i class="fas fa-clipboard-list fa-2x"></i>
-                        <p class="list">Screening Data</p>
+                        <p class="list" onclick="screeningData()" >Screening Data</p>
                     </div>
-                    <div class="side-bar-list">
+                    {{-- <div class="side-bar-list">
                         <i class="fas fa-camera fa-2x"></i>
                         <p class="list">Biometric</p>
-                    </div>
+                    </div> --}}
                 </div>
             </aside>
             <div id="right-bar">
@@ -53,7 +55,7 @@
                         <p> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                         <p>122475</p>
                         <div id="image-div" onclick="selectPhoto()">
-                            <img src="{{asset('images/profile.jpg')}}" alt="Profile Image" id="profile_photo_holder">
+                            <img src="{{asset($profile_photo_path)}}" alt="Profile Image" id="profile_photo_holder">
                             <i class="fas fa-camera fa-2x"></i>
                         </div>
                         <input type="file" name="profile_photo" id="profile_photo" onchange="changeImage(this)">
@@ -126,7 +128,7 @@
                                     </div>
                                     <div id="change-password-message"></div>
                                     <div class="input">
-                                    <button type="submit" id="change_password" class="button save-button"> Save Changes</button>
+                                    <button type="submit" id="change_password" class="button save-button">Change password </button>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +143,7 @@
                                     </div>
                                     <div class="button-group">
                                         <div id="change-email-message"></div>
-                                    <button type="submit" id="change_email" class="button save-button"> Save Changes</button>
+                                    <button type="submit" id="change_email" class="button save-button"> Change Email</button>
                                     {{-- <button type="submit" class="button" id="delete-button"> Delete Account</button> --}}
                                     </div>
                                     
