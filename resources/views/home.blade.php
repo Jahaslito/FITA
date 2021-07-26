@@ -11,7 +11,9 @@
     <title>Landing</title>
 </head>
 <body>
-    @php 
+
+
+    @php
     $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;
     @endphp
         <div id="top-bar">
@@ -23,10 +25,10 @@
                 <div class="dropdown">
                     <i class="fa fa-caret-down" id="dropdown-icon"></i>
                     <div class="dropdown-content">
-                      <a href="" onclick="logout()">Logout</a>                    
+                      <a  onclick="logout()">Logout</a>
                     </div>
-                  </div> 
-                
+                  </div>
+
             </div>
         </div>
         <div id="main">
@@ -160,12 +162,12 @@
                             <button class="button" id="submit" type="submit">Next</button>
                             <button class="button" id="back" type="button">Back</button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
         </div>
-  
+
 </body>
 <script src="{{asset('js/common.js')}}"></script>
 <script src="{{asset('js/landing.js')}}"></script>
