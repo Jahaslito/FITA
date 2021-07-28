@@ -39,3 +39,8 @@ Route::middleware('verified')->group(function (){
     Route::post('/submit-screening-data', [ScreeningDataController::class,'store_screening_data']);
 
 });
+
+Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class, 'resources']);
+
+//Route::resource('users', [\App\Http\Controllers\UserController::class]);
+Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
