@@ -9,10 +9,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="iziToast.min.css">
     <title>Landing</title>
 </head>
 <body>
-    @php 
+    @php
     $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;
     @endphp
         <div id="top-bar">
@@ -24,10 +25,10 @@
                 <div class="dropdown">
                     <i class="fa fa-caret-down" id="dropdown-icon"></i>
                     <div class="dropdown-content">
-                      <a onclick="logout()">Logout</a>                    
+                      <a onclick="logout()">Logout</a>
                     </div>
-                </div> 
-                
+                </div>
+
             </div>
         </div>
         <div id="main">
@@ -146,7 +147,7 @@
                                     <button type="submit" id="change_email" class="button save-button"> Change Email</button>
                                     {{-- <button type="submit" class="button" id="delete-button"> Delete Account</button> --}}
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -154,8 +155,9 @@
                 </div>
             </div>
         </div>
-  
+
 </body>
+<script src="iziToast.min.js" type="text/javascript"></script>
 <script src="{{asset('js/common.js')}}"></script>
 <script src="{{asset('js/profile.js')}}"></script>
 </html>
