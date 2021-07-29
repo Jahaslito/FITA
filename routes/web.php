@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -22,16 +23,24 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=> true]);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('verified');
-Route::get('/profile', [HomeController::class, 'profile'])->name('profile')->middleware('verified');
-Route::post('/personal_details',[ProfileController::class,'update_personal_details'])->name('personal_details')->middleware('verified');
-Route::post('/password',[ProfileController::class,'change_password'])->name('change_password')->middleware('verified');
-Route::post('/setting',[ProfileController::class,'change_email'])->name('change_email')->middleware('verified');
-Route::post('/upload-profile-image', [ ProfileController::class, 'store_profile_image' ])->middleware('verified');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
-Route::post('/personal_details',[ProfileController::class,'update_personal_details'])->name('personal_details');
-Route::post('/password',[ProfileController::class,'change_password'])->name('change_password');
-Route::post('/setting',[ProfileController::class,'change_email'])->name('change_email');
-Route::post('/upload-profile-image', [ ProfileController::class, 'store_profile_image' ]);
-Route::post('/submit-screening-data', [ScreeningDataController::class,'store_screening_data']);
+Route::middleware('verified')->group(function (){
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+    Route::post('/personal_details',[ProfileController::class,'update_personal_details'])->name('personal_details');
+    Route::post('/password',[ProfileController::class,'change_password'])->name('change_password')->middleware('verified');
+    Route::post('/setting',[ProfileController::class,'change_email'])->name('change_email');
+    Route::post('/upload-profile-image', [ ProfileController::class, 'store_profile_image' ]);
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+    Route::post('/personal_details',[ProfileController::class,'update_personal_details'])->name('personal_details');
+    Route::post('/password',[ProfileController::class,'change_password'])->name('change_password');
+    Route::post('/setting',[ProfileController::class,'change_email'])->name('change_email');
+    Route::post('/upload-profile-image', [ ProfileController::class, 'store_profile_image' ]);
+    Route::post('/submit-screening-data', [ScreeningDataController::class,'store_screening_data']);
+
+});
+
+Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class, 'resources']);
+
+//Route::resource('users', [\App\Http\Controllers\UserController::class]);
+Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);

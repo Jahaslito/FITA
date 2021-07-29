@@ -14,7 +14,7 @@ function changeImage(input){
 }
 let uploadProfileMessage = "";
 
-//Adding the csrf tkoen in ajax request 
+//Adding the csrf tkoen in ajax request
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -29,8 +29,8 @@ $(document).ready(function() {
        let lastName= $("#last-name").val();
        let dateOfBirth= $("#date-of-birth").val();
        let phone_number= $("#phone-number").val();
-       let address= $("#address").val(); 
-      
+       let address= $("#address").val();
+
        let postData= {
             first_name: firstName,
             last_name: lastName,
@@ -53,7 +53,7 @@ $(document).ready(function() {
                 displayMessage(messageBox,"error","All fields are required");
             }
         });
-        }  
+        }
     });
 
     $("#change_password").click(function (event) {
@@ -62,7 +62,7 @@ $(document).ready(function() {
             let currentPassword= $("#current-password").val();
             let newPassword= $("#new-password").val();
             let verifyPassword= $("#verify-password").val();
-           
+
             let postData= {
                  current_password: currentPassword,
                  new_password: newPassword,
@@ -90,7 +90,7 @@ $(document).ready(function() {
                  error: function(result) {
                      displayMessage(pMessageBox,"error","All fields are requried");
                  }
-             });   
+             });
         }
      });
 
@@ -98,7 +98,7 @@ $(document).ready(function() {
         event.preventDefault();
         if (confirm("Do you want to save changes?")) {
             let email= $("#email").val();
-        
+
             let postData= {
                 email: email,
             }
@@ -120,7 +120,7 @@ $(document).ready(function() {
                     displayMessage(messageBox,"error",error);
                 }
             });
-        }  
+        }
      });
      $("#image-button").click( function (event){
          event.preventDefault();
@@ -138,7 +138,12 @@ $(document).ready(function() {
            processData: false,
            success: function(result) {
             if (result=='success') {
-                displayMessage(messageBox,"success","Profile Photo Updated Successfully!");
+                iziToast.success({
+                    title: 'OK',
+                    message: 'Successfully inserted record!',
+                    position: 'topLeft',
+                });
+                // displayMessage(messageBox,"success","Profile Photo Updated Successfully!");
             }else{
                 console.log(result);
             }
@@ -155,7 +160,7 @@ $(document).ready(function() {
 });
 
 function concatenateMessage(item, index) {
-    uploadProfileMessage += item + "<br>"; 
+    uploadProfileMessage += item + "<br>";
     }
 
 //To display error or success messages

@@ -108,6 +108,7 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
                 </div>
             </div>
 </body>
+<script src="iziToast.min.js" type="text/javascript"></script>
 <script src="{{asset('js/common.js')}}"></script>
 <script src="{{asset('js/profile.js')}}"></script>
 </html>
