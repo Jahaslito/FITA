@@ -1,23 +1,13 @@
 html,body{
-    height:100%;
+height: fit-content;
 }
 body{
-    background-color: #57B846;
+    background-color:white;
     overflow-y: scroll;
     padding: 0px;
 }
 
-/* #top-bar{
-    display: inline-block; 
-    width: 100%;
-   
-}
-#top-bar h1{
-    float: left;
-}
-.right{
-    float: right;
-} */
+
 #top-bar{
     display: flex;
     justify-content: space-between
@@ -66,7 +56,7 @@ body{
     background-color: white;
     height: 100%;
     margin: 0px;
-    border-radius: 25px;
+
 }
 #main aside{
     flex: 14%;
@@ -104,9 +94,7 @@ body{
     margin: 10px;
    
 }
-h1{
-    color: white;
-}
+
 h2{
     text-align: center;
     margin-bottom: 0px;
@@ -132,7 +120,7 @@ h2{
 }
 
 
-input{
+.alternatives-list-item input{
     margin: 10px;
 }
 .buttons-container{
@@ -196,45 +184,15 @@ input{
     #form-box{
         width: 80%;
     }
-    #folder{
-        display: block;
-        padding: 10px;
-    }
-    /* subject to change  */
-    .overlay {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0px;
-        left: 0;
-        background-color: rgb(87, 184, 70,0.9);
-        overflow-x: hidden;
-        transition: 0.5s;
-        
-    }
-    
-    .overlay-content {
-        position: relative;
-        top: 25%;
-        width: 100%;
-        text-align: center;
-        margin-top: 30px;
-    }
-    .overlay .closebtn {
-        display: block;
-        position: absolute;
-        top: 0px;
-        right: 5px;
-        font-size: 60px;
-        color: #1f2937;
-    }
     #profile-photo-card{
         margin-left: 0px;
     }
     .success,.error{
         width: 80%;
     }
+    /* a.extra-nav{
+        display: block;
+    } */
 }
 
  /* For dropdown */
@@ -287,3 +245,6 @@ input{
     background-color: #f8d7da;
     border-radius: 10px;
 }
+/* a.extra-nav{
+    display: none;
+} */
