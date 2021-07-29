@@ -17,13 +17,7 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
                         <div id="photo-upload-message"></div>
                         <p id="extra-info">Maximum allowed size is 1MB</p>
                     </div>
-                    {{-- <div id="percentage-card" class="card">
-                        <p>Profile Complition</p>
-                        <p id="percentage">60%</p>
-                        <div class="progress-bar">
-                            <div class="progress-status"></div>
-                        </div>
-                    </div> --}}
+                    
                 </div>
                 <div id="main-container-right-bar">
                     <div id="edit-information-card" >
