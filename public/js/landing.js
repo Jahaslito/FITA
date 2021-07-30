@@ -1,4 +1,4 @@
-
+var questionCounter=1;
 //going to the next question
 $(document).ready(function(){
     let firstQuestion= $("#first-question");

@@ -1,60 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://kit.fontawesome.com/37280917ff.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="iziToast.min.css">
-    <title>Landing</title>
-</head>
-<body>
-    @php
-    $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;
-    @endphp
-        <div id="top-bar">
-            <h1>LOGO</h1>
-            <div id="profile-box" class="right">
-                <img src="{{asset($profile_photo_path)}}" alt="Profile Photo">
-                <p> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
-                <!-- <span>></span> -->
-                <div class="dropdown">
-                    <i class="fa fa-caret-down" id="dropdown-icon"></i>
-                    <div class="dropdown-content">
-                      <a onclick="logout()">Logout</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div id="main">
-            <aside id="side-bar" class="overlay">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <div class="overlay-content">
-                    <div class="side-bar-list">
-                        <i class="fas fa-user-circle fa-2x"></i>
-                        <p class="list" onclick="profile()">Profile</p>
-                    </div>
-                    <div class="side-bar-list">
-                        <i class="fas fa-clipboard-list fa-2x"></i>
-                        <p class="list" onclick="screeningData()" >Screening Data</p>
-                    </div>
-                    {{-- <div class="side-bar-list">
-                        <i class="fas fa-camera fa-2x"></i>
-                        <p class="list">Biometric</p>
-                    </div> --}}
-                </div>
-            </aside>
-            <div id="right-bar">
-                <i class="fas fa-align-justify fa-2x" id="folder" onclick="openOverlay()"></i>
-                <div id="right-left-bar">
+@extends('layouts.user_layout')
+@section('content')
+@php 
+$profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;
+@endphp
+        <div id="main-container">
+                <div id="main-container-left-bar">
                     <div id="profile-photo-card" class="card">
                         <p> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
-                        <p>122475</p>
+                        <p>{{Auth::user()->email}}</p>
                         <div id="image-div" onclick="selectPhoto()">
                             <img src="{{asset($profile_photo_path)}}" alt="Profile Image" id="profile_photo_holder">
                             <i class="fas fa-camera fa-2x"></i>
@@ -64,15 +17,9 @@
                         <div id="photo-upload-message"></div>
                         <p id="extra-info">Maximum allowed size is 1MB</p>
                     </div>
-                    {{-- <div id="percentage-card" class="card">
-                        <p>Profile Complition</p>
-                        <p id="percentage">60%</p>
-                        <div class="progress-bar">
-                            <div class="progress-status"></div>
-                        </div>
-                    </div> --}}
+                    
                 </div>
-                <div id="right-right-bar">
+                <div id="main-container-right-bar">
                     <div id="edit-information-card" >
                         <h1>Edit Information</h1>
                         <div id="personal-details" class="card">
@@ -140,24 +87,23 @@
                                 <div class="form-left-hand">
                                     <div class="input">
                                         <label for="email">Email</label>
-                                        <input type="email" id="email" name="email" value="{{Auth::user()->email}}">
+                                        <input type="email" id="email" name="email" value="{{Auth::user()->email}}" disabled>
                                     </div>
-                                    <div class="button-group">
+                                    {{-- <div class="button-group">
                                         <div id="change-email-message"></div>
                                     <button type="submit" id="change_email" class="button save-button"> Change Email</button>
-                                    {{-- <button type="submit" class="button" id="delete-button"> Delete Account</button> --}}
+                                    <button type="submit" class="button" id="delete-button"> Delete Account</button>
                                     </div>
-
+                                     --}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
 </body>
 <script src="iziToast.min.js" type="text/javascript"></script>
 <script src="{{asset('js/common.js')}}"></script>
 <script src="{{asset('js/profile.js')}}"></script>
 </html>
+@endsection

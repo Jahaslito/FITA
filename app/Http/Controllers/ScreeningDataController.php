@@ -8,8 +8,9 @@ use App\Models\ScreeningData;
 class ScreeningDataController extends Controller
 {
     public function store_screening_data(Request $request){
+        $date= now()->format('F')." ".now()->format('d')." ".now()->format('Y');
         $userId= Auth::user()->id;
-        $data= ScreeningData::where("user_id",$userId)->first();
+        $data= ScreeningData::where("user_id",$userId)->where("date",$date)->first();
         if($data!=null){
             return "You have already submitted the form for today";
         }
@@ -39,7 +40,6 @@ class ScreeningDataController extends Controller
             "question_three"=>$quetion_three,
             "question_four"=>$quetion_four
         ));
-        $date= now()->format('F')." ".now()->format('d')." ".now()->format('Y');
         
 
         $screeningData= new ScreeningData;
