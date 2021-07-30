@@ -40,7 +40,8 @@ Route::middleware('verified')->group(function (){
 
 });
 
-Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class, 'resources']);
+Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources']);
 
-//Route::resource('users', [\App\Http\Controllers\UserController::class]);
-Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
+Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:admin');
+Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware('role:admin');
+Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware('role:admin');
