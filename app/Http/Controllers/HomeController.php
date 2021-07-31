@@ -29,4 +29,7 @@ class HomeController extends Controller
     {
         return view('profile');
     }
+    public function train_face(){
+        return view('train_face');
+    }
 }
