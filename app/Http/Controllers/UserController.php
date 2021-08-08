@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth', 'role:super_admin']);
+        $this->middleware(['auth', 'role:admin']);
     }
 
     public function index()
@@ -83,6 +83,18 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return response()->json(['message' => "User deleted successfully"], 204);
+    }
+
+    public function disable($id){
+        $user = User::find($id);
+        $user->is_active =! $user->is_active;
+
+        if ($user->save()){
+            return redirect(route('users.index'))->with('success', 'User disabled');
+        }else{
+            return redirect(route('disable'))->with('info', "User enabled");
+        }
+
     }
 
 }

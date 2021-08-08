@@ -1,8 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('title', '| Add Role')
 
-@section('body')
+@section('content')
     <div id="page-wrapper">
 
     <div class='col-lg-4 col-lg-offset-4'>

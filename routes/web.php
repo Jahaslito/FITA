@@ -41,8 +41,9 @@ Route::middleware('verified')->group(function (){
 
 });
 
-Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources'])->middleware('role:super_admin');
+Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources'])->middleware('role:admin');
 
-Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:super_admin');
-Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware('role:super_admin');
-Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware('role:super_admin');
+Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:admin');
+Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware('role:admin');
+Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware('role:admin');
+Route::get('disable/{id}', [\App\Http\Controllers\UserController::class, 'disable'])->name('disable');
