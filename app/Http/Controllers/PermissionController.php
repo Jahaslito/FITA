@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Session;
 class PermissionController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth', 'role:admin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+        $this->middleware(['auth', 'role:super_admin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
     }
 
     /**

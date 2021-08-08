@@ -44,6 +44,10 @@
     </nav>
     <!-- Dropdown Structure -->
     <ul id="dropdown1" class="dropdown-content">
+{{--        @php--}}
+{{--            $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;--}}
+{{--        @endphp--}}
+
         <li><a href="{{asset('user/profile')}}"><i class="fa fa-user fa-fw"></i> My Profile</a>
         </li>
         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>

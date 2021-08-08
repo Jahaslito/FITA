@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth', 'role:admin']);
+        $this->middleware(['auth', 'role:super_admin']);
     }
 
     public function index()
