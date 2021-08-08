@@ -84,7 +84,7 @@ body{
     transform: rotate(90deg); 
     cursor: pointer;
 }
-.a.extra-nav{
+#dropdown-id a.extra-nav{
     display: none;
 }
 
@@ -92,6 +92,9 @@ body{
     
     .lists{
         display: none;
+    }
+    #dropdown-id a.extra-nav{
+        display: block;
     }
 }
 

@@ -1,4 +1,7 @@
 /* The main container */
+body{
+    background-color: #eefde6;
+}
 #main-container{
     display: flex;
     flex-direction: row;
@@ -19,6 +22,7 @@
     border-radius: 35px;
     box-shadow: 0px 12px 16px 0px rgba(0,0,0,0.2);
     border: 1px solid #e0dddd;
+    background-color: white;
 }
 .button{
     border-radius: 10px;
@@ -147,11 +151,16 @@ h3{
 .button-group button{
     margin-right: 50px;
 }
-a.extra-nav{
-    display: none;
+.card{
+    border-radius: 35px;
+    box-shadow: 0px 12px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid #e0dddd;
 }
+/* a.extra-nav{
+    display: none;
+} */
 
-/* 950 */
+/* 850 */
 @media only screen and (max-width: 850px) {
    
     #main-container{
@@ -170,8 +179,8 @@ a.extra-nav{
         margin-top: 30px;
     }
     /* subject to change  */
-    a.extra-nav{
-        display: block;
+    #dropdown-id a.extra-nav{
+        display: none;
     }
     
 }

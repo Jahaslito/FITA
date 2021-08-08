@@ -8,19 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/37280917ff.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
     <title>Landing</title>
     
 </head>
 <body>
-    @php 
-    $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;
-    @endphp
     <div class="navbar">
         <p class="logo">Logo</p>
         <div class="navbar-lists">
+            <div class="lists" onclick="trainFace()">
+                <p>Train Face</p>
+            </div>
             <div class="lists" onclick="screeningData()">
                 <p>Screening Data</p>
             </div>
@@ -33,7 +31,7 @@
                 <!-- <span>></span> -->
                 <div class="dropdown">
                     <i class="fa fa-caret-down" id="dropdown-icon"></i>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content" id="dropdown-id">
                         <a onclick="profile()" class="extra-nav">Profile</a>
                         <a class="extra-nav" onclick="screeningData()">Screening Data</a>
                         <a onclick="logout()">Logout</a>                

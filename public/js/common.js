@@ -30,3 +30,6 @@ function profile(){
 function screeningData(){
     window.location.href="/home";
 }
+function trainFace(){
+    window.location.href="/train_face";
+}

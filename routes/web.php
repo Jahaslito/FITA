@@ -26,6 +26,7 @@ Auth::routes(['verify'=> true]);
 Route::middleware('verified')->group(function (){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+    Route::get('/train_face', [HomeController::class, 'train_face'])->name('train_face');
     Route::post('/personal_details',[ProfileController::class,'update_personal_details'])->name('personal_details');
     Route::post('/password',[ProfileController::class,'change_password'])->name('change_password')->middleware('verified');
     Route::post('/setting',[ProfileController::class,'change_email'])->name('change_email');

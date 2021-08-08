@@ -1,8 +1,23 @@
-@extends('layouts.user_layout')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/37280917ff.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+    <title>Profile</title>
+</head>
+<body>
 @php 
 $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;
 @endphp
+@extends('layouts.user_layout')
+@section('content')
         <div id="main-container">
                 <div id="main-container-left-bar">
                     <div id="profile-photo-card" class="card">
