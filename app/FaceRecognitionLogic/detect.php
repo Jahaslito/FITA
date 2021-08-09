@@ -29,14 +29,5 @@ $body = json_encode(array('url' => $imageUrl));
 // Request body
 $request->setBody($body);
 
-try
-{
-    $response = $request->send();
-    echo "<pre>" .
-        json_encode(json_decode($response->getBody()), JSON_PRETTY_PRINT) . "</pre>";
-}
-catch (HttpException $ex)
-{
-    echo "<pre>" . $ex . "</pre>";
-}
+
 ?>

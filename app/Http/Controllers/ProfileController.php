@@ -28,6 +28,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function update_personal_details(Request $request){
+
         $request->validate([
             'first_name'=>'required',
             'last_name'=>'required',

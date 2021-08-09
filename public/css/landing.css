@@ -103,7 +103,7 @@ h2{
     float: right;
     margin: 0px;
     margin-right: 2%;
-    width: 130px;
+    width: 150px;
     color: white;
     border-radius: 10px;
 }
@@ -112,7 +112,7 @@ h2{
     padding: 7px 5px;
 }
 .date-display #date{
-    font-size: 22px;
+    font-size: 21px;
     /* font-weight: bold; */
 }
 

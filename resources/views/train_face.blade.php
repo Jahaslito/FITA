@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/train_face.css')}}">
+    <script src="https://kit.fontawesome.com/37280917ff.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Train Face</title>
 </head>
 <body>
@@ -22,8 +24,8 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
     </div>
     <div id="sub-container" class="card">
         <div id="upload-photo-container" class=" flex hide-element">
-            <img src="{{asset('images/default_photo.jpg')}}" alt="">
-            <input type="file" id="uploaded-photo" class="hide-element" id="image-upload">
+            <img src="{{asset('images/default_photo.jpg')}}" id="uploaded-image-holder" alt="">
+            <input type="file" id="uploaded-photo" class="hide-element" id="image-upload" onchange="changeImage(this)">
             <button id="click-upload-photo">Upload Photo</button>
         </div>
         <div id="take-photo-container">
@@ -45,7 +47,7 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
         <div id="profile-photo-container" class="hide-element flex">
             <img src="{{asset($profile_photo_path)}}" alt="">
         </div>
-        <button class="save" > Train</button>
+        <button class="save" id="train-button"> Train</button>
     </div>
 
  </div>   

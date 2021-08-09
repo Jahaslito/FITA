@@ -1,7 +1,13 @@
+// variable that checks which option of photo upload is selected
+//1. Direct upload of a photo
+//2. Taking a photo using the webcam
+
+//3. Use the profile Image
+var uploadOption=2; 
+
 // Set constraints for the video stream
 var constraints = { video: { facingMode: "user" }, audio: false };
 // Define constants
-
 var cameraTrigger = document.querySelector("#camera_trigger");
 
 //containers
@@ -69,18 +75,70 @@ takePhoto.onclick= function () {
     takePhotoContainer.classList.remove('hide-element');
     uploadPhotoContainer.classList.add('hide-element');
     profilePhotoContainer.classList.add('hide-element');
+    uploadOption=2;
 }
 uploadPhoto.onclick= function () {
     uploadPhotoContainer.classList.remove('hide-element');
     takePhotoContainer.classList.add('hide-element');
     profilePhotoContainer.classList.add('hide-element');
+    uploadOption=1;
 }
 profilePhoto.onclick = function () {
     profilePhotoContainer.classList.remove('hide-element');
     uploadPhotoContainer.classList.add('hide-element');
     takePhotoContainer.classList.add('hide-element');
+    uploadOption=3;
 }
 
 clickUploadPhoto.onclick = function () {
     uploadedPhoto.click();
+}
+
+// Using Jquery and AJAX to make requests directly to the server
+$(document).ready(function(){
+    $("#train-button").click(function(){
+        switch (uploadOption) {
+            case 1:
+                $("#uploaded-photo").val();
+                let uploadedImage= $('#uploaded-photo')[0].files[0];
+                console.log(uploadedImage);
+                let formData= new FormData();
+                formData.append("uploaded-photo",uploadedImage);
+                console.log(uploadedImage);
+                $.ajax({
+                    url: '/train_face',
+                    data:formData,
+                    method: "post",
+                    contentType: false,
+                    processData: false,
+                    success:function(result) {
+                        console.log(result);
+                    },
+                    error:function(result){
+                        console.log(result);
+                    }
+                });
+                break;
+            case 2:
+            
+                break;
+            case 3:
+            
+                break;
+            default:
+                break;
+        }
+    });
+});
+
+function changeImage(input){
+    let imageHolder= document.getElementById("uploaded-image-holder");
+    var file= input.files[0];
+    if (file) {
+        const reader= new FileReader();
+            reader.addEventListener('load', function(){
+            imageHolder.src = this.result;
+        });
+        reader.readAsDataURL(file);
+    }
 }

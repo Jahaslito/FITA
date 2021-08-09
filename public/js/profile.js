@@ -138,12 +138,13 @@ $(document).ready(function() {
            processData: false,
            success: function(result) {
             if (result=='success') {
-                iziToast.success({
-                    title: 'OK',
-                    message: 'Successfully inserted record!',
-                    position: 'topLeft',
-                });
-                // displayMessage(messageBox,"success","Profile Photo Updated Successfully!");
+                // iziToast.success({
+                //     title: 'OK',
+                //     message: 'Successfully inserted record!',
+                //     position: 'topLeft',
+                // });
+                displayMessage(messageBox,"success","Profile Photo Updated Successfully!");
+                location.reload();
             }else{
                 console.log(result);
             }

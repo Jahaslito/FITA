@@ -30,7 +30,7 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
                         <input type="file" name="profile_photo" id="profile_photo" onchange="changeImage(this)">
                         <button id="image-button" class="button">Save Photo</button>
                         <div id="photo-upload-message"></div>
-                        <p id="extra-info">Maximum allowed size is 1MB</p>
+                        <p id="extra-info">Maximum allowed size is 15MB</p>
                     </div>
                     
                 </div>
