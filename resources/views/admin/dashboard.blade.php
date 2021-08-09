@@ -64,10 +64,10 @@
                             </div>
                             <div class="card-stacked blue">
                                 <div class="card-content">
-                                    <h3>90</h3>
+                                    <h3>35</h3>
                                 </div>
                                 <div class="card-action">
-                                    <strong>PRODUCTS</strong>
+                                    <strong>Average Temperature</strong>
                                 </div>
                             </div>
                         </div>

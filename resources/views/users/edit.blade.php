@@ -1,8 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 @section('title')
     Edit Users | FITA
 @endsection
-@section('body')
+@section('content')
     <div id="page-wrapper">
         <div class="page-header">
             <div id="page-inner">

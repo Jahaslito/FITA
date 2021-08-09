@@ -1,9 +1,9 @@
 {{-- \resources\views\permissions\create.blade.php --}}
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('title', '| Create Permission')
 
-@section('body')
+@section('content')
 
 <body>
     <div id="page-wrapper">

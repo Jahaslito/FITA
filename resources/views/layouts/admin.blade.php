@@ -39,7 +39,7 @@
             <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown4"><i class="fa fa-envelope fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown3"><i class="fa fa-tasks fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown2"><i class="fa fa-bell fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>{{ Auth::user()->name }}</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>{{ Auth::user()->fisrt_name }}</b> <i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
     </nav>
     <!-- Dropdown Structure -->
@@ -47,12 +47,12 @@
 {{--        @php--}}
 {{--            $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;--}}
 {{--        @endphp--}}
-
-        <li><a href="{{asset('user/profile')}}"><i class="fa fa-user fa-fw"></i> My Profile</a>
+        <li>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</li>
+        <li><a href="{{route('profile')}}"><i class="fa fa-user fa-fw"></i> My Profile</a>
         </li>
         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
         </li>
-        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+        <li><a href="{{ url('/logout') }}" onclick="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
         </li>
     </ul>
     <ul id="dropdown2" class="dropdown-content w250">

@@ -135,9 +135,9 @@ class PermissionController extends Controller {
 
         $permission->delete();
 
-//        return redirect()->route('permissions.index')
-//            ->with('flash_message',
-//                'Permission deleted!');
-        return response()->json(['message' => "Permission deleted successfully"], 204);
+        return redirect()->route('permissions.index')
+            ->with('flash_message',
+                'Permission deleted!');
+//        return response()->json(['message' => "Permission deleted successfully"], 204);
     }
 }

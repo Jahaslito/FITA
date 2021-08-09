@@ -102,24 +102,26 @@
 <script src="ihttps://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-            @@if(Session::has('success'))
+            @if(Session::has('success'))
                 <script>
                 toastr.options ={
                 "closeButton": true,
-                "progressBar": true
+                "progressBar": true,
+                "maxOpened":1,
+                    "preventDuplicates": true
             }
             toastr.success("{{Session::get('success')}}");
                 </script>
-            @@endif
-{{--            @@if(Session::has('info'))--}}
-{{--                <script>--}}
-{{--                        toastr.options = {--}}
-{{--                        "closeButton": true,--}}
-{{--                        "progressBar": false,--}}
-{{--                    }--}}
-{{--                    toastr.success("{{Session::get('info')}}");--}}
-{{--                </script>--}}
-{{--                @@endif--}}
+            @endif
+            @if(Session::has('info'))
+                <script>
+                        toastr.options = {
+                        "closeButton": true,
+                        "progressBar": false,
+                    }
+                    toastr.info("{{Session::get('info')}}");
+                </script>
+            @endif
 
 <script type="text/javascript">
     $(document).ready(function() {

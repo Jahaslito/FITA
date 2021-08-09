@@ -7,6 +7,8 @@
     <div id="page-wrapper">
     <head>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     </head>
 
     <div class="col-lg-10 col-lg-offset-1">
@@ -32,12 +34,12 @@
                             <a href="{{ URL::to('permissions/'.$permission->id.'/edit') }}" class="btn btn-dark pull-left" style="margin-right: 3px;">Edit</a>
 
                             <!-- Button trigger modal -->
-                            <button type="button" data-form-link="{{ route('permissions.destroy', $permission->id) }}"  class="btn btn-danger delete-permission-btn">
-                                DELETE
-                            </button>
-{{--                            {!! Form::open(['method' => 'DELETE', 'route' => ['permissions.destroy', $permission->id] ]) !!}--}}
-{{--                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}--}}
-{{--                            {!! Form::close() !!}--}}
+{{--                            <button type="button" data-form-link="{{ route('permissions.destroy', $permission->id) }}"  class="btn btn-danger delete-permission-btn">--}}
+{{--                                DELETE--}}
+{{--                            </button>--}}
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['permissions.destroy', $permission->id] ]) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
 
                         </td>
                     </tr>
@@ -56,7 +58,18 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+            @if(Session::has('flash_message'))
+                <script>
+                    toastr.options ={
+                        "closeButton": true,
+                        "progressBar": true,
+                        "maxOpened":1,
+                        "preventDuplicates": true
+                    }
+                    toastr.success("{{Session::get('flash_message')}}");
+                </script>
+            @endif
     <script type="text/javascript">
         $(document).ready(function() {
             $('#datatable').DataTable();

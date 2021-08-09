@@ -92,7 +92,7 @@ class UserController extends Controller
         if ($user->save()){
             return redirect(route('users.index'))->with('success', 'User disabled');
         }else{
-            return redirect(route('disable'))->with('info', "User enabled");
+            return redirect(route('users.index'))->with('info', "User enabled");
         }
 
     }

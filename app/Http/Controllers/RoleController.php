@@ -70,7 +70,7 @@ class RoleController extends Controller {
 
         return redirect()->route('roles.index')
             ->with('flash_message',
-                'Role'. $role->name.' added!');
+                'Role '. $role->name.' added!');
     }
 
     /**
@@ -129,7 +129,7 @@ class RoleController extends Controller {
 
         return redirect()->route('roles.index')
             ->with('flash_message',
-                'Role'. $role->name.' updated!');
+                'Role '. $role->name.' updated!');
     }
 
     /**
@@ -142,8 +142,10 @@ class RoleController extends Controller {
     {
         $role = Role::findOrFail($id);
         $role->delete();
+        return redirect()->route('permissions.index')
+            ->with('flash_message',
+                'Role deleted!');
 
-
-        return response()->json(['message' => "Role deleted successfully"], 204);
+//        return response()->json(['message' => "Role deleted successfully"], 204);
     }
 }

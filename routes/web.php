@@ -19,7 +19,7 @@ use App\Http\Controllers\TrainFace;
 */
 
 Route::get('/', function () {
-    return view('auth.index');
+    return view('auth.login');
 });
 
 Auth::routes(['verify'=> true]);
@@ -49,3 +49,5 @@ Route::resource('users', \App\Http\Controllers\UserController::class)->middlewar
 Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware('role:admin');
 Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware('role:admin');
 Route::get('disable/{id}', [\App\Http\Controllers\UserController::class, 'disable'])->name('disable');
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
