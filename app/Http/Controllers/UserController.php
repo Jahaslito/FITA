@@ -85,4 +85,16 @@ class UserController extends Controller
         return response()->json(['message' => "User deleted successfully"], 204);
     }
 
+    public function disable($id){
+        $user = User::find($id);
+        $user->is_active =! $user->is_active;
+
+        if ($user->save()){
+            return redirect(route('users.index'))->with('success', 'User disabled');
+        }else{
+            return redirect(route('disable'))->with('info', "User enabled");
+        }
+
+    }
+
 }

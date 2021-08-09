@@ -40,11 +40,11 @@
                     </div>
 
                     <div class="flex-sb-m w-full p-b-30">
-                        <div class="contact100-form-checkbox">
-                            <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <div class="form-group form-check">
+                            <div class="form-group form-check" id="customCheckbox">
+                                <input id="divCheckbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                <label class="label-checkbox100" for="remember">
+                                <label class="" for="remember" style="margin-left: 10px; color: #808080">
                                     {{ __('Remember Me') }}
                                 </label>
                             </div>

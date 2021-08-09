@@ -11,6 +11,9 @@
 {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">--}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 {{--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 {{--<h1 class="h1" style="color: #0e9f6e; text-align: center;">Users</h1>--}}
@@ -47,7 +50,11 @@
                 <td>{{  $user->roles()->pluck('name')->implode(' ,') }}</td>
                 <td>
                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-dark pull-left" style="margin-right: 30px; margin-left: 30px;">Edit</a>
-
+                    @if($user->is_active == 1)
+                    <a href="{{ route('disable', $user->id) }}" class="btn btn-info pull-left" style="margin-right: 30px; margin-left: 30px;">Enable</a>
+                    @else
+                        <a href="{{ route('disable', $user->id) }}" class="btn btn-warning pull-left disable-user-btn" style="margin-right: 30px; margin-left: 30px;">Disable</a>
+                     @endif
                     <!-- Button trigger modal -->
                     <button type="button" data-form-link="{{ route('users.destroy', $user->id) }}" class="btn btn-danger delete-user-btn">
                         DELETE
@@ -92,6 +99,28 @@
 {{--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>--}}
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="ihttps://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+            @@if(Session::has('success'))
+                <script>
+                toastr.options ={
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.success("{{Session::get('success')}}");
+                </script>
+            @@endif
+{{--            @@if(Session::has('info'))--}}
+{{--                <script>--}}
+{{--                        toastr.options = {--}}
+{{--                        "closeButton": true,--}}
+{{--                        "progressBar": false,--}}
+{{--                    }--}}
+{{--                    toastr.success("{{Session::get('info')}}");--}}
+{{--                </script>--}}
+{{--                @@endif--}}
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#datatable').DataTable();
@@ -126,6 +155,13 @@
                 }
             })
         })
+        // $('.disable-user-btn').click(function() {
+        //     console.log('working');
+        //     iziToast.show({
+        //         title: 'Hey',
+        //         message: 'What would you like to add?'
+        //     });
+        // })
     });
 
 </script>

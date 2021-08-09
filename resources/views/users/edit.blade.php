@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Edit Users | Jah Dishes
+    Edit Users | FITA
 @endsection
 @section('body')
     <div id="page-wrapper">
@@ -23,15 +23,17 @@
 
         <h5><b>Give Role</b></h5>
 
-        <div class='form-group'>
+        <div class='form-group form-check-input'>
             @foreach ($roles as $role)
                 {{ Form::checkbox('roles[]',  $role->id, $user->roles ) }}
                 {{ Form::label($role->name, ucfirst($role->name)) }}<br>
 
             @endforeach
         </div>
-        {{ Form::submit('Add', array('class' => 'btn btn-primary')) }}
+             <div class="form-group" style="margin-top: 70px">
 
+        {{ Form::submit('Add', array('class' => 'btn btn-primary')) }}
+             </div>
         {{ Form::close() }}
 
     </div>
