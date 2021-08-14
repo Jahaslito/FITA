@@ -28,7 +28,7 @@ Route::middleware('verified')->group(function (){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
     Route::get('/train_face', [HomeController::class, 'train_face'])->name('train_face');
-    Route::post('/train_face', [TrainFace::class, 'detectPhoto']);
+    Route::post('/train_face', [TrainFace::class, 'trainFace']);
     Route::post('/personal_details',[ProfileController::class,'update_personal_details'])->name('personal_details');
     Route::post('/password',[ProfileController::class,'change_password'])->name('change_password')->middleware('verified');
     Route::post('/setting',[ProfileController::class,'change_email'])->name('change_email');
@@ -51,3 +51,11 @@ Route::resource('permissions', \App\Http\Controllers\PermissionController::class
 Route::get('disable/{id}', [\App\Http\Controllers\UserController::class, 'disable'])->name('disable');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+Route::get('/createPersonGroup', [TrainFace::class, 'createPersonGroup']);
+Route::get('/listPersons', [TrainFace::class, 'listPersons']);
+Route::get('/deletePerson', [TrainFace::class, 'deletePerson']);
+Route::get('/deleteFace', [TrainFace::class, 'deleteFace']);
+Route::get('/trainPersonGroup', [TrainFace::class, 'trainPersonGroup']);
+Route::get('/identify_face', [HomeController::class, 'identify_face'])->name('identify_face');
+Route::post('/identify_face', [TrainFace::class, 'identifyFace']);

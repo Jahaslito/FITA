@@ -32,4 +32,7 @@ class HomeController extends Controller
     public function train_face(){
         return view('train_face');
     }
+    public function identify_face(){
+        return view('identify');
+    }
 }

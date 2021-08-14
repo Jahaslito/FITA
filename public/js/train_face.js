@@ -3,7 +3,7 @@
 //2. Taking a photo using the webcam
 
 //3. Use the profile Image
-var uploadOption=2; 
+var uploadOption=1; 
 
 // Set constraints for the video stream
 var constraints = { video: { facingMode: "user" }, audio: false };
@@ -101,12 +101,47 @@ $(document).ready(function(){
             case 1:
                 $("#uploaded-photo").val();
                 let uploadedImage= $('#uploaded-photo')[0].files[0];
+                // console.log(uploadedImage);
+                let formData= new FormData();
+                formData.append("uploaded-photo",uploadedImage);
+                // console.log(uploadedImage);
+                $.ajax({
+                    url: '/train_face',
+                    data:formData,
+                    method: "post",
+                    contentType: false,
+                    processData: false,
+                    success:function(result) {
+                        console.log(result);
+                    },
+                    error:function(result){
+                        console.log(result);
+                    }
+                });
+                break;
+            case 2:
+            
+                break;
+            case 3:
+            
+                break;
+            default:
+                break;
+        }
+    });
+    $("#identify-button").click(function(){
+        console.log("called1");
+        switch (uploadOption) {
+            case 1:
+                // $("#uploaded-photo").val();
+                let uploadedImage= $('#uploaded-photo')[0].files[0];
                 console.log(uploadedImage);
                 let formData= new FormData();
                 formData.append("uploaded-photo",uploadedImage);
-                console.log(uploadedImage);
+                console.log("called");
+                // console.log(uploadedImage);
                 $.ajax({
-                    url: '/train_face',
+                    url: '/identify_face',
                     data:formData,
                     method: "post",
                     contentType: false,
