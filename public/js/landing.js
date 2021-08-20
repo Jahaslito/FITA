@@ -26,6 +26,7 @@ $(document).ready(function(){
             case 4:
                 if (confirm("Do you want to submit the form?")) {
                     let formData= new FormData(this);
+                    console.log(formData.get('question_two'));
                 let messageBox= $("#response_message");
                 $.ajax({
                     type:'POST',
@@ -37,6 +38,7 @@ $(document).ready(function(){
                        if (result=='success') {
                         displayMessage(messageBox,'success',"Data submitted successfully");
                        }else{
+                        console.log(messageBox);
                         displayMessage(messageBox,'error',result);
                        }
                      },

@@ -29,10 +29,10 @@ class ScreeningDataController extends Controller
         if ($request->has('aches')) array_push($symptoms_array,7);
         if ($request->has('others')) array_push($symptoms_array,8);
         if ($request->has('none')) array_push($symptoms_array,0);
-
-        $question_two= $request->quetion_two;
-        $quetion_three= $request->quetion_three;
-        $quetion_four= $request->quetion_four;
+        $request= $request->all();
+        $question_two= $request["question_two"];
+        $quetion_three= $request["question_three"];
+        $quetion_four= $request["question_four"];
 
         $screening_data_json= json_encode( array(
             "symptoms"=>$symptoms_array,

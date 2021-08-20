@@ -3,8 +3,8 @@
 //2. Taking a photo using the webcam
 
 //3. Use the profile Image
-var uploadOption=1; 
-
+var uploadOption=2; 
+var imageUrl;
 // Set constraints for the video stream
 var constraints = { video: { facingMode: "user" }, audio: false };
 // Define constants
@@ -58,8 +58,8 @@ capture.onclick = function() {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-    cameraOutput.src = cameraSensor.toDataURL("image/webp");
-    console.log(cameraOutput.src);
+   // cameraOutput.src = cameraSensor.toDataURL("image/webp");
+    imageUrl=cameraSensor.toDataURL("image/webp");
 };
 
 // Start the video stream when the button start camera is clicked
@@ -103,7 +103,8 @@ $(document).ready(function(){
                 let uploadedImage= $('#uploaded-photo')[0].files[0];
                 // console.log(uploadedImage);
                 let formData= new FormData();
-                formData.append("uploaded-photo",uploadedImage);
+                formData.append("uploaded_photo",uploadedImage);
+                formData.append("type","upload");
                 // console.log(uploadedImage);
                 $.ajax({
                     url: '/train_face',
@@ -112,7 +113,13 @@ $(document).ready(function(){
                     contentType: false,
                     processData: false,
                     success:function(result) {
-                        console.log(result);
+                        if (result=="success") {
+                            console.log(result);
+                        }else{
+                            //code for error display
+                            console.log(result);
+                        }
+                        
                     },
                     error:function(result){
                         console.log(result);
@@ -120,10 +127,55 @@ $(document).ready(function(){
                 });
                 break;
             case 2:
-            
+                let formDataTwo= new FormData();
+                formDataTwo.append("uploaded_photo",imageUrl);
+                formDataTwo.append("type","webcam");
+                $.ajax({
+                    url: '/train_face',
+                    data:formDataTwo,
+                    method: "post",
+                    contentType: false,
+                    processData: false,
+                    success:function(result) {
+                        if (result=="success") {
+                            console.log(result);
+                        }else{
+                            //code for error display
+                            console.log(result);
+                        }
+                        
+                    },
+                    error:function(result){
+                        console.log(result);
+                    }
+                });
                 break;
             case 3:
-            
+                $("#uploaded-photo").val();
+                // let uploadedImage= $('#uploaded-photo')[0].files[0];
+                // console.log(uploadedImage);
+                let formDataThree= new FormData();
+                formDataThree.append("type","profile");
+                // console.log(uploadedImage);
+                $.ajax({
+                    url: '/train_face',
+                    data:formDataThree,
+                    method: "post",
+                    contentType: false,
+                    processData: false,
+                    success:function(result) {
+                        if (result=="success") {
+                            console.log(result);
+                        }else{
+                            //code for error display
+                            console.log(result);
+                        }
+                        
+                    },
+                    error:function(result){
+                        console.log(result);
+                    }
+                });
                 break;
             default:
                 break;
@@ -147,6 +199,15 @@ $(document).ready(function(){
                     contentType: false,
                     processData: false,
                     success:function(result) {
+                        if (result=="ERROR_1") {
+                            console.log("No match found");
+                        }else if(result=="ERROR_2"){
+                            console.log("Oops,something wrong");
+                        }else{
+                            // success message
+                            // Full name of the identified person will be displayed
+                            console.log(result);
+                        }
                         console.log(result);
                     },
                     error:function(result){

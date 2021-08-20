@@ -1,5 +1,7 @@
 <?php
 namespace App\FaceRecognitionLogic;
+
+use App\Models\FaceDetails;
 use HTTP_Request2;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -34,7 +36,8 @@ class FaceAPI {
         //setting query variables in the url
         $parameters = array(
             'detectionModel' => 'detection_03',
-            'returnFaceId' => 'true'
+            'returnFaceId' => 'true',
+            'recognitionModel' => 'recognition_04'
         );
 
         //Binding the parameters in the url
@@ -298,13 +301,13 @@ class FaceAPI {
 
         $request->setHeader($this->headers);
 
-        // $parameters = array(
-        //     'detectionModel' => 'detection_03',
-        //     'returnFaceId' => 'true',
-        //     'recognitionModel' => 'recognition_02'
-        // );
+        $parameters = array(
+            'detectionModel' => 'detection_03',
+            'returnFaceId' => 'true',
+            'recognitionModel' => 'recognition_04'
+        );
 
-        // $url->setQueryVariables($parameters);
+        $url->setQueryVariables($parameters);
 
         $request->setMethod(HTTP_Request2::METHOD_POST);
 
@@ -323,7 +326,8 @@ class FaceAPI {
         try
         {
             $response = $request->send();
-            return $response->getBody();
+            $response= $response->getBody();
+            return $response;
         }
         catch (HttpException $ex)
         {
