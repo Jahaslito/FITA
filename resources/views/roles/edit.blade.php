@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', '| Edit Role')
 
-@section('content')
+@section('body')
 <div id="page-wrapper">
 
     <div class='col-lg-4 col-lg-offset-4'>
@@ -29,4 +29,8 @@
         {{ Form::close() }}
     </div>
 </div>
+
+<style>
+    [type="checkbox"]:not(:checked),[type="checkbox"]:checked{position: unset;opacity: unset;}
+</style>
 @endsection

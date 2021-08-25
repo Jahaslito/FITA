@@ -12,7 +12,7 @@
     </head>
 
     <div class="col-lg-10 col-lg-offset-1" style="margin-top: 100px; margin-left: 40px;">
-        <h1 style="color: #0e9f6e"><i class="fa fa-key" style="color: black"></i> Roles
+        <h1 style="color: #0e9f6e"><i class="fa fa-clipboard" style="color: black"></i> Roles
 
             <a href="{{ route('users.index') }}" class="btn btn-default pull-right">Users</a>
             <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
