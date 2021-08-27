@@ -115,11 +115,12 @@ $(document).ready(function(){
                     success:function(result) {
                         if (result=="success") {
                             console.log(result);
+                            modifiedDisplayMessage("new-success","Face trained successfully");
                         }else{
                             //code for error display
+                            modifiedDisplayMessage("new-error",result);
                             console.log(result);
-                        }
-                        
+                        }                       
                     },
                     error:function(result){
                         console.log(result);
@@ -138,9 +139,10 @@ $(document).ready(function(){
                     processData: false,
                     success:function(result) {
                         if (result=="success") {
-                            console.log(result);
+                            modifiedDisplayMessage("new-success","Face trained successfully");
                         }else{
                             //code for error display
+                            modifiedDisplayMessage("new-error",result);
                             console.log(result);
                         }
                         
@@ -166,8 +168,10 @@ $(document).ready(function(){
                     success:function(result) {
                         if (result=="success") {
                             console.log(result);
+                            modifiedDisplayMessage("new-success","Face trained successfully");
                         }else{
                             //code for error display
+                            modifiedDisplayMessage("new-error",result);
                             console.log(result);
                         }
                         
@@ -237,4 +241,17 @@ function changeImage(input){
         });
         reader.readAsDataURL(file);
     }
+}
+function modifiedDisplayMessage(className,message){
+    toastr.options ={
+        // "closeButton": true,
+        "progressBar": true,
+        "maxOpened":1,
+        "preventDuplicates": true,
+        "positionClass": className
+    }
+    toastr.success(message);
+}
+function Attempt(){
+    modifiedDisplayMessage("new-success","Face trained Successfully");
 }

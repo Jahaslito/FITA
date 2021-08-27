@@ -36,10 +36,12 @@ $(document).ready(function(){
                      processData: false,
                      success: function(result){
                        if (result=='success') {
-                        displayMessage(messageBox,'success',"Data submitted successfully");
+                        //displayMessage(messageBox,'success',"Data submitted successfully");
+                        modifiedDisplayMessage('new-success',"Data submitted successfully");
                        }else{
                         console.log(messageBox);
-                        displayMessage(messageBox,'error',result);
+                        modifiedDisplayMessage('new-error',result);
+                        //displayMessage(messageBox,'error',result);
                        }
                      },
                      error: function(result){
@@ -49,8 +51,8 @@ $(document).ready(function(){
                         if(error.question_two) {concatenatedErrors+= error.question_two[0]+"<br>"};
                         if(error.question_three) {concatenatedErrors+= error.question_three[0]+"<br>"};
                         if(error.question_four) {concatenatedErrors+= error.question_four[0]+"<br>"};
-                        
-                        displayMessage(messageBox,"error",concatenatedErrors);
+                        modifiedDisplayMessage('new-error',concatenatedErrors);
+                        //displayMessage(messageBox,"error",concatenatedErrors);
                         uploadProfileMessage=""
                      }
                  });
@@ -91,5 +93,16 @@ function displayMessage(messageBox,type,message) {
         messageBox.css("display","none");
         messageBox.removeClass(type);
     }, 6000);
+}
+
+function modifiedDisplayMessage(className,message){
+    toastr.options ={
+        "closeButton": true,
+        "progressBar": true,
+        "maxOpened":1,
+        "preventDuplicates": true,
+        "positionClass": className
+    }
+    toastr.success(message);
 }
 

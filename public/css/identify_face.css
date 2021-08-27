@@ -96,3 +96,26 @@ button#camera_open, button#camera_close{
 .hide-element{
     display: none;
 }
+.new-error, .new-success, .new-error-two, .new-success-two{
+    position: absolute;
+    width:fit-content;
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 10px;
+}
+.new-error, .new-error-two{
+    background-color: #dc3545;
+}
+.new-success, .new-success-two{
+    background-color: #28a745;
+}
+
+.new-error-two, .new-success-two{
+    top: 50%;
+    right: 50%;
+}
+.new-error, .new-success{
+    top: 40%;
+    right: 40%;
+}

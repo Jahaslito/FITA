@@ -82,7 +82,7 @@ canvas,video,img{
     background-color: rgb(241, 66, 66);
 }
 .save{
-    background-color: rgb(87, 184, 70,0.9);
+    background-color: rgba(10, 43, 4, 0.9);
 }
 .darg-green{
     background-color: #298019;
@@ -129,4 +129,21 @@ canvas,video,img{
     .buttons button{
         background-color: inherit;
     }
+}
+.new-error, .new-success{
+    position: relative;
+    width:fit-content;
+    padding: 10px 30px;
+    border-radius: 10px;
+    /* top: 0%; */
+    top: -20px;
+    left: 40%;
+    color: white;
+    margin-bottom: 10px;
+}
+.new-error{
+    background-color: #dc3545;
+}
+.new-success{
+    background-color: #28a745;
 }

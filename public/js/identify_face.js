@@ -97,17 +97,33 @@ var cameraSensor = $("#camera_sensor");
             success:function(result) {
                 if (result=="ERROR_1") {
                     console.log("No match found");
+                    modifiedDisplayMessage("new-error","No much found");
                 }else if(result=="ERROR_2"){
+                    modifiedDisplayMessage("new-error","Oops,something wrong");
                     console.log("Oops,something wrong");
                 }else{
                     // success message
                     // Full name of the identified person will be displayed
                     
                     result= JSON.parse(result);
-                    let name= result.name;
+                    let name= "Name: "+result.name;
                     let status= result.screeningData;
                     console.log("Name: "+name);
                     console.log("Screening Data: "+status);
+
+                    modifiedDisplayMessage("new-success",name);
+                    setTimeout(() => {
+                        toastr.clear();
+                    }, 1000);
+                    setTimeout(function() {
+                        if (status=="Not filled") {
+                            modifiedDisplayMessage("new-error","Daily Screening data not filled");
+                        }else{
+                            modifiedDisplayMessage("new-success","Proceed to get your temperature measured");
+                        }
+                    }, 3000);
+                    
+                    
                 }
             },
             error:function(result){
@@ -117,21 +133,6 @@ var cameraSensor = $("#camera_sensor");
     });
 });
 
-// function train(params) {
-//     cameraSensor.width = cameraView.videoWidth;
-//         cameraSensor.height = cameraView.videoHeight;
-//         cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-//        cameraOutput.src = cameraSensor.toDataURL("image/webp");
-//         imageUrl=cameraSensor.toDataURL("image/webp");
-//         console.log(imageUrl);
-//         const xhttp = new XMLHttpRequest();
-//         xhttp.onload = function() {
-//         document.getElementById("demo").innerHTML = this.responseText;
-//         }
-//         xhttp.open("POST", "demo_post2.asp");
-//         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//         xhttp.send("fname=Henry&lname=Ford");
-// }
 
 
 function changeImage(input){
@@ -144,4 +145,25 @@ function changeImage(input){
         });
         reader.readAsDataURL(file);
     }
+}
+function modifiedDisplayMessage(className,message){
+    toastr.options ={
+        // "closeButton": true,
+        "progressBar": true,
+        "maxOpened":1,
+        "preventDuplicates": true,
+        "positionClass": className
+    }
+    toastr.success(message);
+}
+function attempt(){
+    modifiedDisplayMessage("new-success","successfukl");
+    setTimeout(() => {
+        toastr.clear();
+    }, 1000);
+    setTimeout(function() {
+       
+        modifiedDisplayMessage("new-error-two","not");
+    }, 3000);
+
 }

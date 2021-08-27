@@ -68,6 +68,7 @@ body{
     margin: 50px auto;
     background-color: white;
     padding-left: 10px;
+    padding-bottom: 15px;
 }
 .side-bar-list{
     display: flex;
@@ -241,6 +242,23 @@ h2{
     color: #721c24;
     background-color: #f8d7da;
     border-radius: 10px;
+}
+.new-error, .new-success{
+    position: relative;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 10px;
+    /* top: 0%; */
+    top: -140px;
+    left: 30%;
+    color: white;
+    margin-bottom: 10px;
+}
+.new-error{
+    background-color: #dc3545;
+}
+.new-success{
+    background-color: #28a745;
 }
 /* a.extra-nav{
     display: none;

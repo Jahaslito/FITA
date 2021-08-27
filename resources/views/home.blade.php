@@ -140,5 +140,7 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
 </body>
 <script src="{{asset('js/common.js')}}"></script>
 <script src="{{asset('js/landing.js')}}"></script>
+<script src="ihttps://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </html>
 @endsection
