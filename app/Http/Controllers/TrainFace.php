@@ -34,7 +34,7 @@ class TrainFace extends Controller
 
         $faceAPI = new FaceAPI();
         
-        $imageUrl= 'https://5066b8b5b7ae.ngrok.io/FITA/public/storage/'.$path;  
+        $imageUrl= env('ngrokLink').'/FITA/public/storage/'.$path;  
         //return $imageUrl;
         return $faceAPI->detectFace($imageUrl);
         }else{
@@ -101,7 +101,7 @@ class TrainFace extends Controller
             }
         }
         
-        $imageUrl= 'https://5066b8b5b7ae.ngrok.io/FITA/public/storage/'.$path;
+        $imageUrl= env('ngrokLink').'/FITA/public/storage/'.$path;
         
         $faceAPI = new FaceAPI();
         
@@ -228,7 +228,7 @@ class TrainFace extends Controller
         file_put_contents($file, $image_base64);
         $path= 'IdentifiedPhotos/'.$imageName;     
          
-        $imageUrl= 'https://5066b8b5b7ae.ngrok.io/FITA/public/storage/'.$path;  
+        $imageUrl= env('ngrokLink').'/FITA/public/storage/'.$path;  
         $faceAPI = new FaceAPI();
         
         
