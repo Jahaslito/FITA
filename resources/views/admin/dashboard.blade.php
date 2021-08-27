@@ -48,7 +48,7 @@
                             </div>
                             <div class="card-stacked orange">
                                 <div class="card-content">
-                                    <h3>89</h3>
+                                    <h3>{{$temp}}</h3>
                                 </div>
                                 <div class="card-action">
                                     <strong>SALES</strong>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="card-stacked blue">
                                 <div class="card-content">
-                                    <h3>35</h3>
+                                    <h3>{{$average}}</h3>
                                 </div>
                                 <div class="card-action">
                                     <strong>Average Temperature</strong>

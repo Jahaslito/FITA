@@ -1,9 +1,9 @@
 {{-- \resources\views\permissions\create.blade.php --}}
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', '| Create Permission')
 
-@section('content')
+@section('body')
 
 <body>
     <div id="page-wrapper">
@@ -35,6 +35,10 @@
 
     </div>
     </div>
+
+    <style>
+        [type="checkbox"]:not(:checked),[type="checkbox"]:checked{position: unset;opacity: unset;}
+    </style>
 </body>
 
 {{--<style>--}}
