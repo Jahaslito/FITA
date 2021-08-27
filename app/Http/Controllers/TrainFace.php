@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\FaceRecognitionLogic\FaceAPI;
+use App\Models\DailyRecord;
 use App\Models\FaceDetails;
 use App\Models\User;
+use App\Models\ScreeningData;
 // use App\FaceRecognitionLogic\FaceAPI as ControllersFaceAPI;
 use HTTP_Request2;
 
@@ -202,14 +204,6 @@ class TrainFace extends Controller
     }
 
     public function identifyFace(Request $request){
-         /**
-         * Validating the photo
-         */
-        // return "hey";
-        // $request->validate([
-        //     'uploaded-photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
-
     
     #Storing the Image before communicating with the API
         $img = $request->uploaded_photo;
@@ -248,7 +242,28 @@ class TrainFace extends Controller
                     $identifiedUserId=$identifiedFaceDetail->user_id;
                     $identifiedUser= User::where('id',$identifiedUserId)->first();
                     $identifiedUserFullName= $identifiedUser->first_name." ".$identifiedUser->last_name;
-                    return $identifiedUserFullName;
+                    //return $identifiedUserFullName;
+
+                    #Checking if the user has answered the screening data questions for the day
+                    $date= now()->format('F')." ".now()->format('d')." ".now()->format('Y');
+                    $data= ScreeningData::where("user_id",$identifiedUserId)->where("date",$date)->first();
+                    
+                    #if the user hasn't answered the questions
+                    if($data==null){
+                        #construct the response
+                        $finalResponse= array("name"=>$identifiedUserFullName,"screeningData"=>"Not Filled");
+                        return json_encode($finalResponse);
+                    }else{
+                        #if the user has answered the questions
+                        #populate the daily record table partially
+                        $dailyRecord= new DailyRecord();
+                        $dailyRecord->screening_data_id= $data->id;
+                        $dailyRecord->save();
+
+                        #construct the response
+                        $finalResponse= array("name"=>$identifiedUserFullName,"screeningData"=>"Filled");
+                        return json_encode($finalResponse);
+                    }
                 }else{
                     return "ERROR_1";//This error code is interpreted in the javascript file
                 }

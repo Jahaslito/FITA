@@ -102,7 +102,12 @@ var cameraSensor = $("#camera_sensor");
                 }else{
                     // success message
                     // Full name of the identified person will be displayed
-                    console.log(result);
+                    
+                    result= JSON.parse(result);
+                    let name= result.name;
+                    let status= result.screeningData;
+                    console.log("Name: "+name);
+                    console.log("Screening Data: "+status);
                 }
             },
             error:function(result){

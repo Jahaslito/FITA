@@ -224,6 +224,9 @@
                     <a href="{{  asset('users') }}" class="  waves-effect waves-dark"><i class="fa fa-users"></i> User Management</a>
                 </li>
                 <li>
+                    <a href="{{  asset('daily_record') }}" class="waves-effect waves-dark"><i class="fa fa-folder-o"></i> Daily Record</a>
+                </li>
+                <li>
                     <a href="" class="waves-effect waves-dark"><i class="fa fa-folder-o"></i> Data Analysis</a>
                 </li>
                 <li>
