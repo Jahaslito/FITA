@@ -116,7 +116,7 @@ var cameraSensor = $("#camera_sensor");
                         toastr.clear();
                     }, 1000);
                     setTimeout(function() {
-                        if (status=="Not filled") {
+                        if (status=="Not Filled") {
                             modifiedDisplayMessage("new-error","Daily Screening data not filled");
                         }else{
                             modifiedDisplayMessage("new-success","Proceed to get your temperature measured");

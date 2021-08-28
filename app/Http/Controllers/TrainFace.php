@@ -247,7 +247,7 @@ class TrainFace extends Controller
                     #Checking if the user has answered the screening data questions for the day
                     $date= now()->format('F')." ".now()->format('d')." ".now()->format('Y');
                     $data= ScreeningData::where("user_id",$identifiedUserId)->where("date",$date)->first();
-                    
+                    //return json_encode($data);
                     #if the user hasn't answered the questions
                     if($data==null){
                         #construct the response

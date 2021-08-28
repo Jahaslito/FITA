@@ -29,6 +29,7 @@
         <caption>List of users</caption>
         <thead>
         <tr>
+            
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
@@ -66,6 +67,7 @@
         @endforeach
         </tbody>
     </table>
+    <button id="Download">Download</button>
 </div>
     </div>
 </div>
@@ -127,7 +129,15 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#datatable').DataTable();
+        $('#datatable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'Download',
+            ]
+        });
+        table.buttons().container()
+            .appendTo($('.col-sm-6:eq(0)', table.table().container()));
+
         $('.delete-user-btn').click(function() {
             const deleteUrl = $(this).attr('data-form-link');
 
