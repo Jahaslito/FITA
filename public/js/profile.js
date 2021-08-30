@@ -22,7 +22,7 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
-    $("#update_personal_details").click(function (event) {
+    $("#personal_details").submit(function (event) {
        event.preventDefault();
        if (confirm("Do you want to save changes?")) {
        let firstName= $("#first-name").val();
@@ -56,7 +56,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#change_password").click(function (event) {
+    $("#change_password_form").submit(function (event) {
         event.preventDefault();
         if (confirm("Do you want to save changes?")) {
             let currentPassword= $("#current-password").val();

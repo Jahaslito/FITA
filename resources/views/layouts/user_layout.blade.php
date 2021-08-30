@@ -14,7 +14,6 @@
 </head>
 <body>
     <div class="navbar">
-        <p class="logo">Logo</p>
         <div class="navbar-lists">
             <div class="lists" onclick="trainFace()">
                 <p>Train Face</p>
@@ -34,6 +33,7 @@
                     <div class="dropdown-content" id="dropdown-id">
                         <a onclick="profile()" class="extra-nav">Profile</a>
                         <a class="extra-nav" onclick="screeningData()">Screening Data</a>
+                        <a onclick="trainFace()" class="extra-nav">Train Face</a>
                         <a onclick="logout()">Logout</a>                
                     </div>
                 </div> 

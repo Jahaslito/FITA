@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreeningDataController;
 use App\Http\Controllers\TrainFace;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::middleware('verified')->group(function (){
 
 Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources'])->middleware('role:admin');
 Route::get('/daily_record',[\App\Http\Controllers\DashboardController::class, 'daily_record'])->middleware('role:admin');
-
+Route::get('/deletePage', [DashboardController::class, 'deletePage']);
 Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:admin');
 Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware('role:admin');
 Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware('role:admin');
@@ -60,3 +61,4 @@ Route::get('/deleteFace', [TrainFace::class, 'deleteFace']);
 Route::get('/trainPersonGroup', [TrainFace::class, 'trainPersonGroup']);
 Route::get('/identify_face', [HomeController::class, 'identify_face'])->name('identify_face');
 Route::post('/identify_face', [TrainFace::class, 'identifyFace']);
+
