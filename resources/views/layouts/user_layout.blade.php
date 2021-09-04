@@ -14,6 +14,7 @@
 </head>
 <body>
     <div class="navbar">
+        <p class="logo"></p>
         <div class="navbar-lists">
             <div class="lists" onclick="trainFace()">
                 <p>Train Face</p>

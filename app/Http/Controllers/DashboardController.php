@@ -14,8 +14,8 @@ class DashboardController extends Controller
 {
     public function resources(){
         $userCount = User::count();
-        $temp = Sensor::count();
-        $average = Sensor::max('temperature');
+        $temp = DailyRecord::max('temperature');
+        $average = DailyRecord::average('temperature');
 //        dd($userCount);
         return view('admin.dashboard', compact('userCount', 'temp', 'average'));
     }
@@ -96,7 +96,7 @@ class DashboardController extends Controller
                 $symptomName= Symptom::find($symptomId);
                 array_push($object->symptoms,$symptomName->name);
             }
-
+            
             #populating the main daily record array
             array_push($dailyRecordArray,$object); 
         }

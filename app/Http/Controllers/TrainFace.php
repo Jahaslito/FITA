@@ -112,7 +112,10 @@ class TrainFace extends Controller
          
          $faceDetectionResult= $faceAPI->detectFace($imageUrl);
          $faceDetectionResult= json_decode($faceDetectionResult);
-
+         
+         if(count($faceDetectionResult)==0){
+            return "No Face Detected";
+        }
          if (isset($faceDetectionResult[0]->faceId)) {
     
             #If Face Detected successfully  
@@ -187,11 +190,12 @@ class TrainFace extends Controller
     }
     public function listPersons(){
         $faceAPI = new FaceAPI();
-        $faceAPI->listPersons();
+        return $faceAPI->listPersons();
     }
     public function deletePerson(){
         $faceAPI = new FaceAPI();
-        $faceAPI->deletePerson();
+        return $faceAPI->deletePerson();
+
     }
 
     public function deleteFace(){
@@ -230,6 +234,9 @@ class TrainFace extends Controller
         $faceDetectionResult= $faceAPI->detectFace($imageUrl);
         $faceDetectionResult= json_decode($faceDetectionResult);
         
+        if(count($faceDetectionResult)==0){
+            return "ERROR_3";
+        }
         if (isset($faceDetectionResult[0]->faceId)) {
             $response= $faceAPI->identifyFace($faceDetectionResult[0]->faceId);
             $response=json_decode($response);  
@@ -256,13 +263,23 @@ class TrainFace extends Controller
                     }else{
                         #if the user has answered the questions
                         #populate the daily record table partially
-                        $dailyRecord= new DailyRecord();
-                        $dailyRecord->screening_data_id= $data->id;
-                        $dailyRecord->save();
+                        
+                        $existingDailyRecord= DailyRecord::where("screening_data_id",$data->id);
+                       // return json_encode($existingDailyRecord);
+                        if (json_encode($existingDailyRecord)=="{}") {
+                            $dailyRecord= new DailyRecord();
 
-                        #construct the response
-                        $finalResponse= array("name"=>$identifiedUserFullName,"screeningData"=>"Filled");
-                        return json_encode($finalResponse);
+                            $dailyRecord->screening_data_id= $data->id;
+                            $dailyRecord->save();
+
+                            #construct the response
+                            $finalResponse= array("name"=>$identifiedUserFullName,"screeningData"=>"Filled");
+                            return json_encode($finalResponse);
+                        }else{
+                            return "ERROR_4";
+                        }
+
+                       
                     }
                 }else{
                     return "ERROR_1";//This error code is interpreted in the javascript file

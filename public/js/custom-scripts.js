@@ -26,37 +26,29 @@
             Morris.Bar({
                 element: 'morris-bar-chart',
                 data: [{
-                    y: '2006',
-                    a: 100,
-                    b: 90
+                    y: 'Monday',
+                    Highest_Temperature: 37.72,
+                    Lowest_Temperature: 33.72
                 }, {
-                    y: '2007',
-                    a: 75,
-                    b: 65
+                    y: 'Tuesday',
+                    Highest_Temperature: 37.32,
+                    Lowest_Temperature: 33.92
                 }, {
-                    y: '2008',
-                    a: 50,
-                    b: 40
+                    y: 'Wednesday',
+                    Highest_Temperature: 38.42,
+                    Lowest_Temperature: 34.22
                 }, {
-                    y: '2009',
-                    a: 75,
-                    b: 65
+                    y: 'Thursday',
+                    Highest_Temperature: 36.43,
+                    Lowest_Temperature: 32.52
                 }, {
-                    y: '2010',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2011',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2012',
-                    a: 100,
-                    b: 90
+                    y: 'Friday',
+                    Highest_Temperature: 36.92,
+                    Lowest_Temperature: 33.62
                 }],
                 xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Series A', 'Series B'],
+                ykeys: ['Highest_Temperature', 'Lowest_Temperature'],
+                labels: ['Highest', 'Lowest'],
 				 barColors: [
     '#e96562','#414e63',
     '#A8E9DC' 

@@ -223,7 +223,7 @@ class FaceAPI {
     }
     public function deletePerson(){
         $personGroupId= "trained_students_1";
-        $personId="3c97ff3f-7321-4d54-b293-aed6eb56d38f"; 
+        $personId="ecae8ade-161c-4cd5-aaeb-95c7b1fe1f64"; 
         $request = new Http_Request2($this->uriBase."persongroups/".$personGroupId."/persons/".$personId);
         $url = $request->getUrl();
 
@@ -249,7 +249,7 @@ class FaceAPI {
     public function deleteFace(){
         $personGroupId= "trained_students_1";
         $personId="d769bf6a-a2ce-48fa-a0d5-f7b60c69ae26"; 
-        $persistedFaceId="c154d310-1bd1-4d36-9c8b-fca7bf9e9c71";
+        $persistedFaceId="4cec52e0-43a2-4786-8b03-a87cf0800e93";
         $request = new Http_Request2($this->uriBase.'persongroups/'.$personGroupId.'/persons/'.$personId.'/persistedFaces/'.$persistedFaceId);
         $url = $request->getUrl();
 

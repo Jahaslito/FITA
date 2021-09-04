@@ -86,6 +86,7 @@ var cameraSensor = $("#camera_sensor");
         
     $("#identify-button").click(function(){
         let imageUrl= getImageUrl();
+        $("#identify-button").prop('disabled', true).addClass('disable-color');
         let formData= new FormData();
         formData.append("uploaded_photo",imageUrl);
         $.ajax({
@@ -98,13 +99,21 @@ var cameraSensor = $("#camera_sensor");
                 if (result=="ERROR_1") {
                     console.log("No match found");
                     modifiedDisplayMessage("new-error","No much found");
+                    $("#identify-button").prop('disabled', false).addClass('enable-color');
                 }else if(result=="ERROR_2"){
-                    modifiedDisplayMessage("new-error","Oops,something wrong");
+                    modifiedDisplayMessage("new-error","Oops,the API is down currently");
+                    $("#identify-button").prop('disabled', false).addClass('enable-color');
                     console.log("Oops,something wrong");
+                }else if(result=="ERROR_3"){
+                    modifiedDisplayMessage("new-error","No Face Detected");
+                    $("#identify-button").prop('disabled', false).addClass('enable-color');
+                }else if(result=="ERROR_4"){
+                    modifiedDisplayMessage("new-error","Your daily record has already been recorded!");
+                    $("#identify-button").prop('disabled', false).addClass('enable-color');
                 }else{
                     // success message
                     // Full name of the identified person will be displayed
-                    
+                    console.log(result);
                     result= JSON.parse(result);
                     let name= "Name: "+result.name;
                     let status= result.screeningData;
@@ -116,14 +125,14 @@ var cameraSensor = $("#camera_sensor");
                         toastr.clear();
                     }, 1000);
                     setTimeout(function() {
-                        if (status=="Not Filled") {
-                            modifiedDisplayMessage("new-error","Daily Screening data not filled");
-                        }else{
+                        if (status=="Filled") {
                             modifiedDisplayMessage("new-success","Proceed to get your temperature measured");
+                        }else{
+                            modifiedDisplayMessage("new-error","Daily Screening data not filled");
                         }
                     }, 3000);
                     
-                    
+                    $("#identify-button").prop('disabled', false).addClass('enable-color');
                 }
             },
             error:function(result){

@@ -81,6 +81,7 @@ $(document).ready(function() {
                  success: function(result) {
                     if (result=='success') {
                         displayMessage(pMessageBox,"success","Password Changed Successfully");
+                        logout();
                     }else if(result=='WP'){
                         displayMessage(pMessageBox,"error","Wrong Password");
                     }else if(result=='MP'){
@@ -173,4 +174,19 @@ function displayMessage(messageBox,type,message) {
         messageBox.css("display","none");
         messageBox.removeClass(type);
     }, 4000);
+}
+function logout() {
+    console.log("called");
+    $.ajax({
+        url: '/logout',
+				method: 'post',
+				success: function (result) {
+					console.log("result:\n");
+					console.log("successfully logged out");
+                    window.location.href="/";
+					},
+				error: function (result) {
+					console.log(result);   
+				}
+    });
 }

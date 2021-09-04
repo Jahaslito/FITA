@@ -23,35 +23,19 @@
 
             <div class="dashboard-cards">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-3">
 
-                        <div class="card horizontal cardIcon waves-effect waves-dark">
-                            <div class="card-image red">
-                                <i class="material-icons dp48">import_export</i>
-                            </div>
-                            <div class="card-stacked red">
-                                <div class="card-content">
-                                    <h3>Ksh 200</h3>
-                                </div>
-                                <div class="card-action">
-                                    <strong>REVENUE</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                     <div class="col-xs-12 col-sm-6 col-md-3">
 
                         <div class="card horizontal cardIcon waves-effect waves-dark">
                             <div class="card-image orange">
-                                <i class="material-icons dp48">shopping_cart</i>
+                                <i class="material-icons dp48">equalizer</i>
                             </div>
                             <div class="card-stacked orange">
                                 <div class="card-content">
                                     <h3>{{$temp}}</h3>
                                 </div>
                                 <div class="card-action">
-                                    <strong>SALES</strong>
+                                    <strong>Daily Average Temperature</strong>
                                 </div>
                             </div>
                         </div>
@@ -99,29 +83,8 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <div class="card-panel text-center">
-                                    <h4>Profit</h4>
-                                    <div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="card-panel text-center">
                                     <h4>No. of Visits</h4>
-                                    <div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="card-panel text-center">
-                                    <h4>Customers</h4>
-                                    <div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="card-panel text-center">
-                                    <h4>Sales</h4>
-                                    <div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
+                                    <div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">{{$userCount}}</span>
                                     </div>
                                 </div>
                             </div>

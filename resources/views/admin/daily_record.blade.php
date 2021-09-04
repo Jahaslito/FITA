@@ -28,9 +28,9 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Symptoms</th>
-            <th>Question 2</th>
-            <th>Question 3</th>
-            <th>Question 4</th>
+            <th title="Have you been in close physical contact in the last 14 days with anyone who is known to have laboratory-confirmed COVID-19?">Question 2</th>
+            <th title="Have you been in close physical contact in the last 14 days with anyone who has any symptoms consistent with COVID-19?">Question 3</th>
+            <th title="Have you traveled to places with high covid-19 incidences in the past 10 days?">Question 4</th>
             <th>Temperature</th>
             <th>Date</th>
         </tr>
@@ -51,9 +51,9 @@
                     }
                 @endphp
                 <td>{{ $symptomLists}}</td>
-                <td>{{ $dailyRecord->question_two }}</td>
-                <td>{{ $dailyRecord->question_three}}</td>
-                <td>{{ $dailyRecord->question_four}}</td>
+                <td title="Have you been in close physical contact in the last 14 days with anyone who is known to have laboratory-confirmed COVID-19?">{{ $dailyRecord->question_two }}</td>
+                <td title="Have you been in close physical contact in the last 14 days with anyone who has any symptoms consistent with COVID-19?">{{ $dailyRecord->question_three}}</td>
+                <td title="Have you traveled to places with high covid-19 incidences in the past 10 days?">{{ $dailyRecord->question_four}}</td>
                 <td>{{ $dailyRecord->temperature}}</td>
 
                 <td>{{ $dailyRecord->created_at->format('F d, Y h:ia') }}</td>
@@ -87,9 +87,8 @@
 @section('script')
 
 <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous">
+    src="https://code.jquery.com/jquery-1.10.2.min.js"
+    >
 </script>
 
 <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
