@@ -35,4 +35,7 @@ class HomeController extends Controller
     public function identify_face(){
         return view('identify');
     }
+    public function no_access(){
+        return view('no_access');
+    }
 }

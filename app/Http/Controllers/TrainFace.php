@@ -18,7 +18,7 @@ class TrainFace extends Controller
     public static $uriBase ='https://fita.cognitiveservices.azure.com//face/v1.0/';
             //setting the method of request
     public function detectPhoto(Request $requestReceived){
-  
+
         $requestReceived->validate([
             'uploaded-photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -26,17 +26,17 @@ class TrainFace extends Controller
         $userId= Auth::user()->id;
 
         $photo= $requestReceived->file('uploaded-photo');
-       
+
         if ($photo) {
         $imageExtension= $photo->extension();
         $imageName = "trained_photo".$userId.'.'.$imageExtension;
         $path = $photo->storeAs('TrainedPhotos', $imageName, 'public');
-       
-        
+
+
 
         $faceAPI = new FaceAPI();
-        
-        $imageUrl= env('ngrokLink').'/FITA/public/storage/'.$path;  
+
+        $imageUrl= env('ngrokLink').'/FITA/public/storage/'.$path;
         //return $imageUrl;
         return $faceAPI->detectFace($imageUrl);
         }else{
@@ -63,27 +63,27 @@ class TrainFace extends Controller
         $uploadWay=$requestReceived->type;
         // return $uploadWay;
         $path="";
-        
+
         #Identifying which method is used to upload the image for training
-        #Storing the Image before communicating with the API 
+        #Storing the Image before communicating with the API
         if ($uploadWay=="webcam") {
-            
+
             $img = $requestReceived->uploaded_photo;
             $folderPath = public_path()."/storage/TrainedPhotos/";
-          
+
             $image_parts = explode(";base64,", $img);
             $image_type_aux = explode("image/", $image_parts[0]);
             $image_type = $image_type_aux[1];
-          
+
             $image_base64 = base64_decode($image_parts[1]);
-            
+
             #Default image extension for photos taken using webcam
             $imageExtension="png";
             $imageName = "trained_photo".$userId.'.'.$imageExtension;
-           
+
             $file = $folderPath . $imageName;
             file_put_contents($file, $image_base64);
-            $path= 'TrainedPhotos/'.$imageName;          
+            $path= 'TrainedPhotos/'.$imageName;
 
         }else if($uploadWay=="profile"){
             if (Auth::user()->profile_photo_path!=NULL) {
@@ -91,7 +91,7 @@ class TrainFace extends Controller
             }else{
                 return "No profile picture is found";
             }
-           
+
         }else{
             $photo= $requestReceived->file('uploaded_photo');
             if ($photo) {
@@ -102,34 +102,33 @@ class TrainFace extends Controller
                 return "Invalid Image";
             }
         }
-        
-        $imageUrl= env('ngrokLink').'/FITA/public/storage/'.$path;
-        
-        $faceAPI = new FaceAPI();
-        
-        
-        #Detecting a face in the image
-         
-         $faceDetectionResult= $faceAPI->detectFace($imageUrl);
-         $faceDetectionResult= json_decode($faceDetectionResult);
 
+        $imageUrl= env('ngrokLink').'/FITA/public/storage/'.$path;
+
+        $faceAPI = new FaceAPI();
+
+
+        #Detecting a face in the image
+
+         $faceDetectionResult= $faceAPI->detectFace($imageUrl);
+         $faceDetectionResult= json_decode($faceDetectionResult, true);
          if (isset($faceDetectionResult[0]->faceId)) {
-    
-            #If Face Detected successfully  
-            #Check if a person is created for this particular user in the API 
+
+            #If Face Detected successfully
+            #Check if a person is created for this particular user in the API
             $face = FaceDetails::where('user_id', Auth::user()->id)->first();
 
             if ($face!=null) {
                 // return "face not null called";
-                
+
                  #Code if the person exists in the remote server already
                  #Add the image in the PersonGroup person created in the API
-                 
+
                 $personId= $face->person_id;
 
                 $responseForAddingFace= $faceAPI->addFaceToPerson($personId,$imageUrl);
                 $responseForAddingFace= json_decode($responseForAddingFace);
-                
+
                 if(isset($responseForAddingFace->persistedFaceId)){
                     $this->trainPersonGroup();
                     return $this->addFaceDetail($responseForAddingFace->persistedFaceId,$personId,$path,Auth::user()->id);
@@ -137,13 +136,13 @@ class TrainFace extends Controller
                     return "something went wrong in adding a face\n";
                     #.json_encode($responseForAddingFace)
                 }
-                
-    
+
+
             }else{
-               
+
                  # Code if the person doesn't exist in the remote server already
                  # Create a PersongGroup Person then add the image in it.
-               
+
                 $createPersonResult = $faceAPI->createPerson();
                 $createPersonResult= json_decode($createPersonResult);
                 if (isset($createPersonResult->personId)) {
@@ -170,11 +169,11 @@ class TrainFace extends Controller
              return "System couldn't detect a face\n";
              #.json_encode($faceDetectionResult)
          }
-        
 
-        
+
+
         $faceAPI = new FaceAPI();
-        
+
     }
     public function addFaceDetail($persistedFaceId,$personId,$path,$user_id){
         $newFaceDetail= new FaceDetails();
@@ -200,40 +199,40 @@ class TrainFace extends Controller
     }
     public function trainPersonGroup(){
         $faceAPI = new FaceAPI();
-        $faceAPI->trainPersonGroup(); 
+        $faceAPI->trainPersonGroup();
     }
 
     public function identifyFace(Request $request){
-    
+
     #Storing the Image before communicating with the API
         $img = $request->uploaded_photo;
         $folderPath = public_path()."/storage/IdentifiedPhotos/";
-        
+
         $image_parts = explode(";base64,", $img);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
-        
+
         #Default image extension for photos taken using webcam
         $imageExtension="png";
         $imageName = "identified_photo".time().'.'.$imageExtension;
-        
+
         $file = $folderPath . $imageName;
         file_put_contents($file, $image_base64);
-        $path= 'IdentifiedPhotos/'.$imageName;     
-         
-        $imageUrl= env('ngrokLink').'/FITA/public/storage/'.$path;  
+        $path= 'IdentifiedPhotos/'.$imageName;
+
+        $imageUrl= env('ngrokLink').'/FITA/public/storage/'.$path;
         $faceAPI = new FaceAPI();
-        
-        
+
+
         #Detecting a face in the image
         $faceDetectionResult= $faceAPI->detectFace($imageUrl);
         $faceDetectionResult= json_decode($faceDetectionResult);
-        
+
         if (isset($faceDetectionResult[0]->faceId)) {
             $response= $faceAPI->identifyFace($faceDetectionResult[0]->faceId);
-            $response=json_decode($response);  
-            
+            $response=json_decode($response);
+
             #Looking for a match inside the trained Photos
             if (isset($response[0]->candidates)) {
                 if (isset($response[0]->candidates[0]->personId)) {
@@ -247,7 +246,7 @@ class TrainFace extends Controller
                     #Checking if the user has answered the screening data questions for the day
                     $date= now()->format('F')." ".now()->format('d')." ".now()->format('Y');
                     $data= ScreeningData::where("user_id",$identifiedUserId)->where("date",$date)->first();
-                    
+
                     #if the user hasn't answered the questions
                     if($data==null){
                         #construct the response
@@ -270,8 +269,8 @@ class TrainFace extends Controller
             }else {
                 return "ERROR_2";//This error code is interpreted in the javascript file
             }
-                    
-        }    
+
+        }
     }
 
 }
