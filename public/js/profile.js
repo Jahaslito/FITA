@@ -22,7 +22,7 @@ $.ajaxSetup({
 });
 
 $(document).ready(function() {
-    $("#update_personal_details").click(function (event) {
+    $("#personal_details").submit(function (event) {
        event.preventDefault();
        if (confirm("Do you want to save changes?")) {
        let firstName= $("#first-name").val();
@@ -56,7 +56,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#change_password").click(function (event) {
+    $("#change_password_form").submit(function (event) {
         event.preventDefault();
         if (confirm("Do you want to save changes?")) {
             let currentPassword= $("#current-password").val();
@@ -81,6 +81,7 @@ $(document).ready(function() {
                  success: function(result) {
                     if (result=='success') {
                         displayMessage(pMessageBox,"success","Password Changed Successfully");
+                        logout();
                     }else if(result=='WP'){
                         displayMessage(pMessageBox,"error","Wrong Password");
                     }else if(result=='MP'){
@@ -173,4 +174,19 @@ function displayMessage(messageBox,type,message) {
         messageBox.css("display","none");
         messageBox.removeClass(type);
     }, 4000);
+}
+function logout() {
+    console.log("called");
+    $.ajax({
+        url: '/logout',
+				method: 'post',
+				success: function (result) {
+					console.log("result:\n");
+					console.log("successfully logged out");
+                    window.location.href="/";
+					},
+				error: function (result) {
+					console.log(result);   
+				}
+    });
 }

@@ -119,3 +119,9 @@ button#camera_open, button#camera_close{
     top: 40%;
     right: 40%;
 }
+.disable-color{
+    background-color: grey;
+}
+.enable-color{
+    background-color: #67bf58;
+}

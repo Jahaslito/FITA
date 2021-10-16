@@ -19,6 +19,7 @@
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="/js/Lightweight-Chart/cssCharts.css">
+
 </head>
 
 <body>
@@ -217,21 +218,19 @@
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
 
-                <li class="{{ Request::is('admin*') ? 'active' : '' }}">
+                <li  style="background-color:{{ Request::is('admin*') ? '#2a4470' : '' }}">
                     <a class="waves-effect waves-dark" href="{{ asset('admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                 </li>
-                <li class="{{ Request::is('users*') ? 'active' : '' }}">
+                <li style="background-color:{{ Request::is('users*') ? '#2a4470' : '' }}">
                     <a href="{{  asset('users') }}" class="  waves-effect waves-dark"><i class="fa fa-users"></i> User Management</a>
                 </li>
-                <li>
+                <li  style="background-color:{{ Request::is('daily_record*') ? '#2a4470' : '' }}">
                     <a href="{{  asset('daily_record') }}" class="waves-effect waves-dark"><i class="fa fa-folder-o"></i> Daily Record</a>
                 </li>
-                <li>
-                    <a href="" class="waves-effect waves-dark"><i class="fa fa-folder-o"></i> Data Analysis</a>
-                </li>
-                <li>
+
+                {{-- <li>
                     <a href="" class="waves-effect waves-dark"><i class="fa fa-dollar"></i> Extras</a>
-                </li>
+                </li> --}}
 
             </ul>
 

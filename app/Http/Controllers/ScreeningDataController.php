@@ -28,7 +28,7 @@ class ScreeningDataController extends Controller
         if ($request->has('fatigue')) array_push($symptoms_array,6);
         if ($request->has('aches')) array_push($symptoms_array,7);
         if ($request->has('others')) array_push($symptoms_array,8);
-        if ($request->has('none')) array_push($symptoms_array,0);
+        if ($request->has('none')) array_push($symptoms_array,9);
         $request= $request->all();
         $question_two= $request["question_two"];
         $quetion_three= $request["question_three"];

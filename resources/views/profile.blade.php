@@ -38,30 +38,31 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
                     <div id="edit-information-card" >
                         <h1>Edit Information</h1>
                         <div id="personal-details" class="card">
+                            <form action="" method="post" id="personal_details">
                             <h3>Personal Details</h3>
                             <div class="form">
                                 <div class="form-left-hand">
                                     <div class="input">
                                         <label for="first-name">First Name</label>
-                                        <input type="text" id="first-name" name="first_name" value="{{Auth::user()->first_name}}">
+                                        <input type="text" id="first-name" name="first_name" value="{{Auth::user()->first_name}}" required>
                                     </div>
                                     <div class="input">
                                         <label for="last-name">Last Name</label>
-                                        <input type="text" id="last-name" name="last_name" value="{{Auth::user()->last_name}}">
+                                        <input type="text" id="last-name" name="last_name" value="{{Auth::user()->last_name}}" required>
                                     </div>
                                     <div class="input">
                                         <label for="phone-number">Phone Number</label>
-                                        <input type="text" id="phone-number" name="phone_number" placeholder="+251" value="{{ Auth::user()->phone_number}}">
+                                        <input type="text" id="phone-number" name="phone_number" placeholder="+251" value="{{ Auth::user()->phone_number}}" required>
                                     </div>
                                 </div>
                                 <div class="form-right-hand">
                                     <div class="input">
                                         <label for="address">Address</label>
-                                        <input type="text" id="address" name="address" value="{{ Auth::user()->address}}">
+                                        <input type="text" id="address" name="address" value="{{ Auth::user()->address}}" required>
                                     </div>
                                     <div class="input">
                                         <label for="date-of-birth">Date of Birth</label>
-                                        <input type="date" id="date-of-birth" name="date_of_birth" value="{{ Auth::user()->date_of_birth}}">
+                                        <input type="date" id="date-of-birth" name="date_of_birth" value="{{ Auth::user()->date_of_birth}}" required>
                                     </div>
                                     <div id="personal-detail-message"></div>
                                     <div class="input" >
@@ -69,25 +70,27 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
                                     </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
 
                         <div id="change-password" class="card">
                             <h3>Change Password</h3>
+                            <form id="change_password_form" method="post">
                             <div class="form">
                                 <div class="form-left-hand">
                                     <div class="input">
                                         <label for="current-password">Current Password</label>
-                                        <input type="password" id="current-password" name="current_password">
+                                        <input type="password" id="current-password" name="current_password" required>
                                     </div>
                                     <div class="input">
                                         <label for="new-password">New Password</label>
-                                        <input type="password" id="new-password" name="new_password">
+                                        <input type="password" id="new-password" name="new_password" required>
                                     </div>
                                 </div>
                                 <div class="form-right-hand">
                                     <div class="input">
                                         <label for="verify-password">Verify Password</label>
-                                        <input type="password" id="verify-password" name="verify_password">
+                                        <input type="password" id="verify-password" name="verify_password" required>
                                     </div>
                                     <div id="change-password-message"></div>
                                     <div class="input">
@@ -95,6 +98,7 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
                                     </div>
                                 </div>
                             </div>
+                            </form>
                         </div>
                         <div id="account-setting" class="card">
                             <h3>Account Setting</h3>

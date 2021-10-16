@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScreeningDataController;
 use App\Http\Controllers\TrainFace;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------

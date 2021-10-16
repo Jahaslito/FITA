@@ -83,7 +83,7 @@
         background-color: #0e9f6e;
     }
     html{
-        overflow: hidden;
+        overflow: auto;
     }
 </style>
 
