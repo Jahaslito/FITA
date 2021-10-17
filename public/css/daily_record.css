@@ -1,0 +1,47 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even){
+    background-color: #0e9f6e;
+}
+html{
+    overflow:auto;
+}
+div.filter{
+display: flex;
+flex-direction: row;
+width: 90%;
+margin: 5px auto;
+justify-content: space-around;
+}
+.option{
+    display: flex;
+    flex-direction: column;
+}
+#symptom, #question, #answer, #date{
+   border:1px solid black;
+   display: block;
+   width: 200px;
+    height: 40px;
+    padding: 0px;
+    background-color: white;
+}
+/* input, select{
+    width: 200px;
+    height: 30px;
+    border:1px solid black;
+    background-color: white;
+    display: block;
+} */
+label{
+    margin-bottom: 5px;
+}
+.answer{
+    display: none;
+}

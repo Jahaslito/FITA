@@ -9,6 +9,7 @@ use App\Models\ScreeningData;
 use App\Models\Symptom;
 use \stdClass;
 use Illuminate\Http\Request;
+use DateTime;
 
 class DashboardController extends Controller
 {
@@ -100,11 +101,123 @@ class DashboardController extends Controller
             #populating the main daily record array
             array_push($dailyRecordArray,$object); 
         }
-        //dd($dailyRecordArray);
 
-        return view('admin.daily_record')->with('dailyRecords', $dailyRecordArray);
+        $symptoms= Symptom::all();
+        return view('admin.daily_record')->with('dailyRecords', $dailyRecordArray)->with('symptoms',$symptoms);
         //Decoding the data from the database
         //$screeningData= ScreeningData::all();
         //return view('admin.daily_record');
+    }
+
+    public function filter_table(Request $request){
+        // $array= $request->all();
+        // $data= "";
+        $dateData=$request->dateData;
+        $symptomData=$request->symptomData;
+        $questionData=$request->questionData;
+        $answerData=$request->answerData;
+       // return json_encode($request->all());
+        //return $data;
+        // return "Hey : ".json_encode($request->symptomData);
+        $dailyRecords= DailyRecord::all();
+        
+        $dailyRecordArray= array();
+        foreach ($dailyRecords as $dailyRecord) {
+            
+            #Creating an object
+            $object = new stdClass();
+
+            #Daily record details
+            
+            $screeningData= ScreeningData::find($dailyRecord->screening_data_id);
+            $dateDataString= new DateTime($dateData);
+            if ($dateData!=null && $dateDataString->format('F d Y')!=$screeningData->date) {
+                continue;
+            }
+
+            // $object->created_at= $dailyRecord->created_at;
+            // $dailyRecord->created_at->format('F d, Y h:ia');
+             
+            #Analyzing and populating Screening Data Questions in the object
+            $screeningDataJson= json_decode($screeningData->screening_data);
+            $question_two = $screeningDataJson->question_two;
+            $question_three = $screeningDataJson->question_three;
+            $question_four = $screeningDataJson->question_four;
+
+            if ($questionData!=null) {
+                switch ($questionData) {
+                    case 'question-two':
+                        if ($answerData!=$question_two) {
+                            continue 2;
+                        }
+                        break;
+                    case 'question-three':
+                        if ($answerData!=$question_three) {
+                            continue 2;
+                        }
+                        break;
+                    case 'question-four':
+                        if ($answerData!=$question_four) {
+                            continue 2;
+                        }
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
+
+            $symptomIds=$screeningDataJson->symptoms;
+            if($symptomData!=null && !in_array($symptomData,$symptomIds)){
+                continue;
+            }
+
+            #populating the object
+            $object->temperature= $dailyRecord->temperature;
+            $object->created_at= $screeningData->date;
+             //user details
+            $user= User::find($screeningData->user_id);
+            $object->first_name= $user->first_name;
+            $object->last_name= $user->last_name;
+            $object->email= $user->email;
+             //question details
+            $object->question_two = $screeningDataJson->question_two;
+            $object->question_three = $screeningDataJson->question_three;
+            $object->question_four = $screeningDataJson->question_four;
+
+            #Analyzing and populating symptoms in the object
+            $object->symptoms=array();
+            
+            foreach ($symptomIds as $symptomId) {
+                $symptomName= Symptom::find($symptomId);
+                array_push($object->symptoms,$symptomName->name);
+            } 
+            #populating the main daily record array
+             array_push($dailyRecordArray,$object); 
+        }
+        $responseText="";
+        foreach ($dailyRecordArray as $row) {
+            $responseText.=
+            " <tr>
+              <td>$row->first_name</td>
+              <td>$row->last_name</td>
+              <td>$row->email</td>";
+              $symptoms= $row->symptoms;
+              $symptomLists="";
+              foreach ($symptoms as $symptom) {
+                  $symptomLists.=$symptom.",\n";
+              }
+              $responseText.=
+            " <td>$symptomLists</td>
+              <td title='Have you been in close physical contact in the last 14 days with anyone who is known to have laboratory-confirmed COVID-19?'>$row->question_two</td>
+              <td title='Have you been in close physical contact in the last 14 days with anyone who has any symptoms consistent with COVID-19?'>$row->question_three</td>
+              <td title='Have you traveled to places with high covid-19 incidences in the past 10 days?'>$row->question_four</td>
+              <td>$row->temperature</td>
+              <td>$row->created_at</td>
+              </tr>
+              ";
+        }
+        return $responseText; 
+       
     }
 }

@@ -17,13 +17,13 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
  @section('content')
 
  <div id="main-container">
-    <div class="buttons " >
+    <div class="buttons" >
         <button id="upload-photo">Upload Photo</button>
         <button id="take-photo">Take Photo</button>
         <button id="profile-photo">Use Profile Photo</button>
     </div>
     <div id="sub-container" class="card">
-        <div id="upload-photo-container" class=" flex hide-element">
+        <div id="upload-photo-container" class="flex hide-element">
             <img src="{{asset('images/default_photo.jpg')}}" id="uploaded-image-holder" alt="">
             <input type="file" id="uploaded-photo" class="hide-element" id="image-upload" onchange="changeImage(this)">
             <button id="click-upload-photo">Upload Photo</button>

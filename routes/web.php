@@ -46,6 +46,7 @@ Route::middleware('verified')->group(function (){
 
 Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources'])->middleware('role:admin');
 Route::get('/daily_record',[\App\Http\Controllers\DashboardController::class, 'daily_record'])->middleware('role:admin');
+Route::post('/filter_table',[\App\Http\Controllers\DashboardController::class, 'filter_table'])->middleware('role:admin');
 Route::get('/deletePage', [DashboardController::class, 'deletePage']);
 Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:admin');
 Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware('role:admin');

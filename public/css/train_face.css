@@ -26,7 +26,7 @@ body{
     justify-content: space-around;
     margin: 20px auto;
     background-color: #4d5868;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 #upload-image-container{
     text-align: center;
@@ -47,7 +47,7 @@ body{
     margin:15px auto;
 }
 button{
-    border-radius: 10px;
+    border-radius: 8px;
     border: none;
     background-color: #1f2937;
     color: white;
@@ -117,18 +117,43 @@ canvas,video,img{
     }
     .camera-buttons{
         max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+    .buttons button{
+        width: max-content; 
+        font-size: 12px;
+    }
+    .camera-buttons button{
+        width: 100px;
+        font-size: 13px;
+    }
+    #display-boxes{
+        display:flex;
+        flex-direction: column;
+    }
+    #display-boxes #camera_view, #display-boxes #camera_sensor{
+        display: block;
+        margin: 8px auto;
     }
 
 }
 @media only screen and (max-width: 420px) {
 
-    .buttons, .camera-buttons{
+    /* .buttons{
        flex-direction: column;
        align-items: center;
-    }
-    .buttons button{
+    } */
+    /* .buttons button{
         background-color: inherit;
-    }
+    } */
 }
 .new-error, .new-success{
     position: relative;
