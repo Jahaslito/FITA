@@ -31,9 +31,20 @@ class LoginController extends Controller
     protected function redirectTo(){
         if(Auth::user()->hasAnyRole( 'admin')){
             return 'admin';
-        }else{
-            return 'home';
         }
+        if (Auth::user()->is_active != 0) {
+
+            return '/no_access';
+            dd("test 2");
+        }
+        return 'home';
+
+
+    }
+
+    protected function noAccess(){
+//        dd("working");
+        return view("no_access");
     }
     /**
      * Create a new controller instance.

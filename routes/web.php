@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=> true]);
 
-Route::middleware('verified')->group(function (){
+Route::middleware(['verified', 'noAccess'])->group(function (){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
     Route::get('/train_face', [HomeController::class, 'train_face'])->name('train_face');
@@ -44,22 +44,33 @@ Route::middleware('verified')->group(function (){
 
 });
 
-Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources'])->middleware('role:admin');
-Route::get('/daily_record',[\App\Http\Controllers\DashboardController::class, 'daily_record'])->middleware('role:admin');
+// Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources'])->middleware('role:admin');
+// Route::get('/daily_record',[\App\Http\Controllers\DashboardController::class, 'daily_record'])->middleware('role:admin');
 Route::post('/filter_table',[\App\Http\Controllers\DashboardController::class, 'filter_table'])->middleware('role:admin');
 Route::get('/deletePage', [DashboardController::class, 'deletePage']);
-Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:admin');
-Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware('role:admin');
-Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware('role:admin');
+// Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:admin');
+// Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware('role:admin');
+// Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware('role:admin');
+Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources'])->middleware(['role:admin','noAccess']);
+Route::get('/daily_record',[\App\Http\Controllers\DashboardController::class, 'daily_record'])->middleware(['role:admin', 'noAccess']);
+
+Route::resource('users', \App\Http\Controllers\UserController::class)->middleware(['role:admin','noAccess']);
+Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware(['role:admin', 'noAccess']);
+Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware(['role:admin', 'noAccess']);
 Route::get('disable/{id}', [\App\Http\Controllers\UserController::class, 'disable'])->name('disable');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/createPersonGroup', [TrainFace::class, 'createPersonGroup']);
-Route::get('/listPersons', [TrainFace::class, 'listPersons']);
-Route::get('/deletePerson', [TrainFace::class, 'deletePerson']);
-Route::get('/deleteFace', [TrainFace::class, 'deleteFace']);
-Route::get('/trainPersonGroup', [TrainFace::class, 'trainPersonGroup']);
-Route::get('/identify_face', [HomeController::class, 'identify_face'])->name('identify_face');
+Route::get('/createPersonGroup', [TrainFace::class, 'createPersonGroup'])->middleware('noAccess');
+Route::get('/listPersons', [TrainFace::class, 'listPersons'])->middleware('noAccess');
+Route::get('/deletePerson', [TrainFace::class, 'deletePerson'])->middleware('noAccess');
+Route::get('/deleteFace', [TrainFace::class, 'deleteFace'])->middleware('noAccess');
+Route::get('/trainPersonGroup', [TrainFace::class, 'trainPersonGroup'])->middleware('noAccess');
+Route::get('/identify_face', [HomeController::class, 'identify_face'])->name('identify_face')->middleware('noAccess');;
 Route::post('/identify_face', [TrainFace::class, 'identifyFace']);
 
+Route::get('/no_access', [HomeController::class, 'no_access']);
+
+//Route::get('/no_access', function () {
+//    return view('no_access');
+//})->middleware('noAccess');
