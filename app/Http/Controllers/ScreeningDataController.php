@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\ScreeningData;
+use App\Models\Symptom;
 
 class ScreeningDataController extends Controller
 {
@@ -20,15 +21,11 @@ class ScreeningDataController extends Controller
             'question_four' => 'required',
           ]);
           $symptoms_array= array();
-        if ($request->has('fever')) array_push($symptoms_array,1);
-        if ($request->has('breathShortness')) array_push($symptoms_array,2);
-        if ($request->has('dryCough')) array_push($symptoms_array,3);
-        if ($request->has('soreThroat')) array_push($symptoms_array,4);
-        if ($request->has('runningNose')) array_push($symptoms_array,5);
-        if ($request->has('fatigue')) array_push($symptoms_array,6);
-        if ($request->has('aches')) array_push($symptoms_array,7);
-        if ($request->has('others')) array_push($symptoms_array,8);
-        if ($request->has('none')) array_push($symptoms_array,9);
+          $symptoms= Symptom::all();
+          foreach ($symptoms as $symptom) {
+            if ($request->has(str_replace(' ', '', $symptom->name))) array_push($symptoms_array,$symptom->id);
+          }
+        
         $request= $request->all();
         $question_two= $request["question_two"];
         $quetion_three= $request["question_three"];
