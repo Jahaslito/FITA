@@ -32,42 +32,12 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
                             <p class="question">Check one or more of the following symptoms if you have experienced them
                                 in the past 48 hours.</p>
                             <div class="alternatives-list">
+                                @foreach($symptoms as $symptom) 
                                 <div class="alternatives-list-item">
-                                    <input type="checkbox" name="fever" id="fever" value="Fever or chills">
-                                    <label for="fever">Fever or chills</label>
+                                    <input type="checkbox" name="{{str_replace(' ', '', $symptom->name)}}" id="{{$symptom->name}}" value="{{$symptom->id}}">
+                                    <label for="{{$symptom->name}}">{{$symptom->name}}</label>
                                 </div>
-                                <div class="alternatives-list-item">
-                                    <input type="checkbox" name="breathShortness" id="breathShortness" value="Shortness of breath or difficulty breathing">
-                                    <label for="breathShortness">Shortness of breath or difficulty breathing</label>
-                                </div>
-                                <div class="alternatives-list-item">
-                                    <input type="checkbox" name="dryCough" id="dryCough" value="Dry cough">
-                                    <label for="dryCough">Dry cough</label>
-                                </div>
-                                <div class="alternatives-list-item">
-                                    <input type="checkbox" name="soreThroat" id="soreThroat" value="Sore throat">
-                                    <label for="soreThroat">Sore throat</label>
-                                </div>
-                                <div class="alternatives-list-item">
-                                    <input type="checkbox" name="runningNose" id="runningNose" value="Congestion or runny nose">
-                                    <label for="runningNose">Congestion or runny nose</label>
-                                </div>
-                                <div class="alternatives-list-item">
-                                    <input type="checkbox" name="fatigue" id="fatigue" value="Fatigue">
-                                    <label for="fatigue">Fatigue</label>
-                                </div>
-                                <div class="alternatives-list-item">
-                                    <input type="checkbox" name="aches" id="aches" value="Head or muscle aches">
-                                    <label for="aches">Head or muscle aches</label>
-                                </div>
-                                <div class="alternatives-list-item">
-                                    <input type="checkbox" name="others" id="others" value="Nausea, diarrhea, vomiting">
-                                    <label for="others">Nausea, diarrhea, vomiting</label>
-                                </div>
-                                <div class="alternatives-list-item">
-                                    <input type="checkbox" name="none" id="none" value="none"checked>
-                                    <label for="fatigue">None</label>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="question" id="second-question">

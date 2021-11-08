@@ -22,7 +22,6 @@
     <h1  style="color: #0e9f6e"><i class="fa fa-users"></i> User Administration <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a>
         <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
     <hr>
-
 <div class="table-responsive">
     <table id = "datatable" class="table table-bordered table-striped table-dark table-hover" style="margin-top: 30px;">
         <caption>List of users</caption>
@@ -165,6 +164,7 @@
         //     });
         // })
     });
+
 
 </script>
     </div>

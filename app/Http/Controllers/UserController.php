@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
+use App\Models\Symptom;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 

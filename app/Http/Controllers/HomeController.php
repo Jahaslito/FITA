@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Symptom;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $symptom= Symptom::all();
+        return view('home')->with('symptoms',$symptom);
     }
     public function profile()
     {
