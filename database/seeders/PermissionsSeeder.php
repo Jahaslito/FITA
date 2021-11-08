@@ -22,6 +22,8 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'edit']);
         Permission::create(['name' => 'delete']);
         Permission::create(['name' => 'disable']);
+        Permission::create(['name' => 'view daily records']);
+        Permission::create(['name' => 'identify users']);
 
         $superAdmin = Role::create(['name' => 'super_admin']);
         $superAdmin->givePermissionTo('edit', 'delete', 'disable');
