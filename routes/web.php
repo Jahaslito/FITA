@@ -44,23 +44,21 @@ Route::middleware(['verified', 'noAccess'])->group(function (){
 
 });
 
-// Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources'])->middleware('role:admin');
-// Route::get('/daily_record',[\App\Http\Controllers\DashboardController::class, 'daily_record'])->middleware('role:admin');
+#Admin routes
 Route::post('/filter_table',[\App\Http\Controllers\DashboardController::class, 'filter_table'])->middleware('role:admin');
-// Route::get('/deletePage', [DashboardController::class, 'deletePage']);
-// Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('role:admin');
-// Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware('role:admin');
-// Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware('role:admin');
 Route::get('/admin',[\App\Http\Controllers\DashboardController::class, 'resources'])->middleware(['role:admin','noAccess']);
 Route::get('/daily_record',[\App\Http\Controllers\DashboardController::class, 'daily_record'])->middleware(['role:admin', 'noAccess']);
+Route::post('/chart_data',[\App\Http\Controllers\DashboardController::class, 'sendChartData'])->middleware(['role:admin', 'noAccess']);
 
 Route::resource('users', \App\Http\Controllers\UserController::class)->middleware(['role:admin','noAccess']);
 Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware(['role:admin', 'noAccess']);
 Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware(['role:admin', 'noAccess']);
 Route::get('disable/{id}', [\App\Http\Controllers\UserController::class, 'disable'])->name('disable');
 
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+#Logic routes face recognition 
 Route::get('/createPersonGroup', [TrainFace::class, 'createPersonGroup'])->middleware('noAccess');
 Route::get('/listPersons', [TrainFace::class, 'listPersons'])->middleware('noAccess');
 Route::get('/deletePerson', [TrainFace::class, 'deletePerson'])->middleware('noAccess');
@@ -71,6 +69,4 @@ Route::post('/identify_face', [TrainFace::class, 'identifyFace']);
 
 Route::get('/no_access', [HomeController::class, 'no_access']);
 
-//Route::get('/no_access', function () {
-//    return view('no_access');
-//})->middleware('noAccess');
+

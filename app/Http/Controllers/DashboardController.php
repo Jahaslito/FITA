@@ -20,50 +20,7 @@ class DashboardController extends Controller
 //        dd($userCount);
         return view('admin.dashboard', compact('userCount', 'temp', 'average'));
     }
-    public function deletePage()
-    {
-        $dailyRecords= DailyRecord::all();
-
-        $dailyRecordArray= array();
-        foreach ($dailyRecords as $dailyRecord) {
-            
-            #Creating an object
-            $object = new stdClass();
-            
-            #Daily record details
-            $screeningData= ScreeningData::find($dailyRecord->screening_data_id);
-            $object->temperature= $dailyRecord->temperature;
-            $object->created_at= $dailyRecord->created_at;
-            
-            # Populating the User's Details in the object
-            $user= User::find($screeningData->user_id);
-            $object->first_name= $user->first_name;
-            $object->last_name= $user->last_name;
-            $object->email= $user->email;
-            
-            #Analyzing and populating Screening Data Questions in the object
-            $screeningDataJson= json_decode($screeningData->screening_data);
-            $object->question_two = $screeningDataJson->question_two;
-            $object->question_three = $screeningDataJson->question_three;
-            $object->question_four = $screeningDataJson->question_four;
-
-            #Analyzing and populating symptoms in the object
-            $object->symptoms=array();
-            $symptomIds=$screeningDataJson->symptoms;
-            foreach ($symptomIds as $symptomId) {
-                $symptomName= Symptom::find($symptomId);
-                array_push($object->symptoms,$symptomName->name);
-            }
-
-            #populating the main daily record array
-            array_push($dailyRecordArray,$object); 
-        }
-        //dd($dailyRecordArray);
-
-        return view('admin.delete')->with('dailyRecords', $dailyRecordArray);
-       
-    //return view('admin.delete');
-    }
+   
     public function daily_record(){
         $dailyRecords= DailyRecord::all();
 
@@ -110,15 +67,12 @@ class DashboardController extends Controller
     }
 
     public function filter_table(Request $request){
-        // $array= $request->all();
-        // $data= "";
+
         $dateData=$request->dateData;
         $symptomData=$request->symptomData;
         $questionData=$request->questionData;
         $answerData=$request->answerData;
-       // return json_encode($request->all());
-        //return $data;
-        // return "Hey : ".json_encode($request->symptomData);
+
         $dailyRecords= DailyRecord::all();
         
         $dailyRecordArray= array();
@@ -217,7 +171,68 @@ class DashboardController extends Controller
               </tr>
               ";
         }
-        return $responseText; 
-       
+        return $responseText;    
     }
+
+    public function getWeekday($date) {
+        return date('w', strtotime($date));
+    }
+
+    public function sendChartData(){
+        $barData= $this->makeBarChart();
+        $groupedBarData= $this->makeGroupedBarChart();
+        $finalData = array(
+            'barData' => $barData, 
+            'groupedBarData' => $groupedBarData 
+        );
+        return $finalData;
+    }
+    public function makeBarChart(){
+        $dailyRecords = DailyRecord::all();
+        $temperatureData = [0,0,0,0,0,0];
+        $temperatureDataCounter = [0,0,0,0,0,0];
+        foreach ($dailyRecords as $dailyRecord){
+         $date= $this->getWeekday($dailyRecord->created_at);
+         if ($date == 0) {
+             continue;
+         }
+         $temperatureData[($date - 1)] += $dailyRecord->temperature; 
+         $temperatureDataCounter[($date - 1)] += 1; 
+        }
+
+        for ($i=0; $i <count($temperatureData) ; $i++) {
+            if ($temperatureDataCounter[$i]==0) {
+                continue;
+            } 
+            $temperatureData[$i]= ($temperatureData[$i]/$temperatureDataCounter[$i]);
+        }
+
+        return $temperatureData;
+    }
+
+    public function makeGroupedBarChart(){
+        $dailyRecords = DailyRecord::all();
+        $temperatureData = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
+        foreach ($dailyRecords as $dailyRecord){
+         $date= $this->getWeekday($dailyRecord->created_at);
+         if ($date == 0) {
+             continue;
+         }
+         #storing the highest temperature
+         if($dailyRecord->temperature > $temperatureData[($date - 1)][0]){
+            $temperatureData[($date - 1)][0] = $dailyRecord->temperature;
+         }
+
+         #storing the lowest temperature
+         if($temperatureData[($date - 1)][1]==0){
+            $temperatureData[($date - 1)][1] = $dailyRecord->temperature;
+         }
+         if($dailyRecord->temperature< $temperatureData[($date - 1)][1]){
+            $temperatureData[($date - 1)][1] = $dailyRecord->temperature;
+         }
+
+        }
+        return $temperatureData;
+    }
+
 }
