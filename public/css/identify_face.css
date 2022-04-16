@@ -1,0 +1,127 @@
+body{
+    background-color: #eefde6;
+    overflow-y: scroll;
+    padding: 0px;
+}
+#main-container{
+    width: 100%;
+    margin: 40px auto;
+    text-align: center;
+}
+#sub-container{
+    width: 80%;
+    margin:20px auto;
+    text-align: center;
+    padding-top: 20px;
+}
+.flex{
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+}
+
+
+#display-boxes{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px auto;
+}
+
+button{
+    border-radius: 10px;
+    border: none;
+    background-color: #1f2937;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+    width: 120px;
+    height: 25px;
+}
+#take-photo-container button{
+    display: block;
+    margin: 10px auto;
+}
+
+#camera_view{
+    height: 400px;
+    width: 80%;
+}
+.camera-buttons{
+    display: flex;
+    /* max-width: 60%; */
+    justify-content: space-around;
+    flex-direction: row;
+    margin: 5px auto;
+}
+button#camera_open, button#camera_close{
+    margin: 5px 10px;
+}
+.red-button{
+    background-color: rgb(241, 66, 66);
+}
+.save{
+    background-color: rgb(87, 184, 70,0.9);
+}
+.darg-green{
+    background-color: #298019;
+}
+.card{
+    border-radius: 35px;
+    box-shadow: 5px 12px 16px 0px rgba(58, 54, 54, 0.2);
+    border: 1px solid #e0dddd;
+    background-color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    #sub-container, #display-boxes{
+        width: 90%;
+    }
+
+    
+}
+
+@media only screen and (max-width: 660px) {
+    #display-boxes,  #sub-container,  #container{
+        width: 100%;
+    }
+
+
+}
+@media only screen and (max-width: 420px) {
+/* //code here */
+}
+.hide-element{
+    display: none;
+}
+.new-error, .new-success, .new-error-two, .new-success-two{
+    position: absolute;
+    width:fit-content;
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 10px;
+}
+.new-error, .new-error-two{
+    background-color: #dc3545;
+}
+.new-success, .new-success-two{
+    background-color: #28a745;
+}
+
+.new-error-two, .new-success-two{
+    top: 50%;
+    right: 50%;
+}
+.new-error, .new-success{
+    top: 40%;
+    right: 40%;
+}
+.disable-color{
+    background-color: grey;
+}
+.enable-color{
+    background-color: #67bf58;
+}

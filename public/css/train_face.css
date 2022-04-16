@@ -1,0 +1,174 @@
+body{
+    background-color: #eefde6;
+    overflow-y: scroll;
+    padding: 0px;
+}
+#main-container{
+    width: 80%;
+    margin: 40px auto;
+    text-align: center;
+}
+#sub-container{
+    width: 80%;
+    margin:20px auto;
+    text-align: center;
+    padding-top: 20px;
+}
+.flex{
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-around;
+    margin: 20px auto;
+    background-color: #4d5868;
+    border-radius: 3px;
+}
+#upload-image-container{
+    text-align: center;
+}
+
+#display-boxes{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px auto;
+}
+#upload-photo-container img, #profile-photo-container img{
+    border: 1px solid black;
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin:15px auto;
+}
+button{
+    border-radius: 8px;
+    border: none;
+    background-color: #1f2937;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+    width: 120px;
+    height: 25px;
+}
+#take-photo-container button{
+    display: block;
+    margin: 10px auto;
+}
+canvas,video,img{
+    border: 1px solid black;
+}
+
+.hide-element{
+    display: none;
+}
+#camera_sensor, #camera_view{
+    height: 250px;
+    width: 250px;
+}
+.camera-buttons{
+    display: flex;
+    max-width: 60%;
+    justify-content: space-around;
+    flex-direction: row;
+    margin: 5px auto;
+}
+.red-button{
+    background-color: rgb(241, 66, 66);
+}
+.save{
+    background-color: rgba(10, 43, 4, 0.9);
+}
+.darg-green{
+    background-color: #298019;
+}
+.card{
+    border-radius: 35px;
+    box-shadow: 0px 12px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid #e0dddd;
+    background-color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+    #main-container{
+        width: 100%;
+    }
+    #sub-container, #display-boxes{
+        width: 90%;
+    }
+    .buttons{
+        width: 90%;
+    }
+    .camera-buttons{
+        max-width: 90%;
+
+    }
+    
+}
+
+@media only screen and (max-width: 660px) {
+    #display-boxes,  #sub-container,  #container{
+        width: 100%;
+    }
+    .camera-buttons{
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+    .buttons button{
+        width: max-content; 
+        font-size: 12px;
+    }
+    .camera-buttons button{
+        width: 100px;
+        font-size: 13px;
+    }
+    #display-boxes{
+        display:flex;
+        flex-direction: column;
+    }
+    #display-boxes #camera_view, #display-boxes #camera_sensor{
+        display: block;
+        margin: 8px auto;
+    }
+
+}
+@media only screen and (max-width: 420px) {
+
+    /* .buttons{
+       flex-direction: column;
+       align-items: center;
+    } */
+    /* .buttons button{
+        background-color: inherit;
+    } */
+}
+.new-error, .new-success{
+    position: relative;
+    width:fit-content;
+    padding: 10px 30px;
+    border-radius: 10px;
+    /* top: 0%; */
+    top: -20px;
+    left: 40%;
+    color: white;
+    margin-bottom: 10px;
+}
+.new-error{
+    background-color: #dc3545;
+}
+.new-success{
+    background-color: #28a745;
+}

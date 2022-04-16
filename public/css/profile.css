@@ -1,0 +1,240 @@
+/* The main container */
+body{
+    background-color: #eefde6;
+}
+#main-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#main-container-left-bar{
+    flex: 30%;
+    border: none;
+}
+#main-container-right-bar{
+    flex: 60%;
+    border: none;
+    
+}
+
+/* General design */
+.card{
+    border-radius: 35px;
+    box-shadow: 0px 12px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid #e0dddd;
+    background-color: white;
+}
+.button{
+    border-radius: 10px;
+    border: none;
+    background-color: #1f2937;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* Photo upload box */
+#profile-photo-card, #percentage-card{
+    margin: 30px 30px;
+    margin-top: 90px;
+    text-align: center;
+    height: 285px;
+}
+#profile-photo-card p{
+    font-size: 15px;
+}
+#edit-information-card{
+    margin: 30px 30px;
+}
+
+#image-div{
+    background-size: cover;
+    text-align: center;
+    height: 110px;
+    width: 110px;
+    border-radius: 50px;
+    margin: 15px auto;
+    cursor: pointer;
+    background-color: #000000;
+}
+#image-div img{
+    height: 110px;
+    width: 110px;
+    border-radius: 50px;
+    z-index: 3;
+}
+#image-div:hover img{
+    opacity: 0.5;
+}
+#image-div:hover i{
+    display: block;
+}
+#image-div i{
+    z-index: 2;
+    position: relative;
+    top: -75px;
+    color: white;
+    display: none;
+}
+#image-button{
+    width: 120px;
+    padding: 7px 5px;
+    font-size: 14px;
+}
+
+/* Code for the form  */
+.form{
+    display: flex;
+    flex-direction: row;
+}
+.form-left-hand, .form-right-hand{
+    flex: 50%;
+    padding: 10px 20px;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+label, input{
+    margin: 5px;
+    padding: 0px;
+}
+.input input{
+    width: 60%;
+    height: 20px;
+    margin-top: 14px;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #b6b0b0;
+    color: #1f2937;
+    /* border-radius: 7px; */
+}
+label{
+    color:#615D5D;
+    margin-bottom: 0px;
+}
+.save-button{
+    padding: 5px;
+    width: 120px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* The page title */
+h1{
+    color: Black;
+    text-align: center;
+}
+
+/* The title of each small  card-box */
+h3{
+    margin-left: 25px;
+    margin-bottom: 5px;
+}
+
+#account-setting, #change-password, #personal-detials{
+    margin-top: 35px;
+    margin-bottom: 0px;
+}
+
+/* code for the email part */
+#email{
+    width: 28%;
+}
+
+
+.button-group{
+    display: inline-block;
+}
+
+.button-group button{
+    margin-right: 50px;
+}
+.card{
+    border-radius: 35px;
+    box-shadow: 0px 12px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid #e0dddd;
+}
+/* a.extra-nav{
+    display: none;
+} */
+
+/* 850 */
+@media only screen and (max-width: 850px) {
+   
+    #main-container{
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    #main-container-right-bar{
+        flex: 100%;
+    }
+    #main-container-left-bar{
+        flex: 80%;
+    }
+    #profile-photo-card{
+        margin-top: 30px;
+    }
+    /* subject to change  */
+    #dropdown-id a.extra-nav{
+        display: none;
+    }
+    
+}
+
+/* 470 */
+@media only screen and (max-width: 470px) {
+    .form{
+        flex-direction: column;
+    }
+    .form-left-hand, .form-right-hand{
+        flex: 100%;
+    }
+    .input{
+        width: 100%;
+    }
+    .input input{
+        width: 80%;
+    }
+    #email{
+        width: 80%;
+    }
+
+}
+
+#profile-photo-card #extra-info{
+    font-size: 14px;
+}
+#personal-detail-message,#change-email-message,#change-password-message,#photo-upload-message{
+    display: none;
+    width: 80%;
+    height:fit-content;
+}
+
+#photo-upload-message{
+    margin:10px auto;
+    height: fit-content;
+    padding-top: 5px;
+}
+.success, .error{
+    width: 60% ;
+    height: fit-content;
+    text-align: center;
+    padding-top: 10px;
+}
+.success{
+    color: #155724;
+    background-color:#d4edda;
+    border-radius: 10px;
+}
+.error{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-radius: 10px;
+}
+#profile_photo{
+    display: none;
+}

@@ -1,0 +1,10 @@
+#myChart{
+border: 1px solid black;
+    display: block;
+}
+#pie-chart-card, #line-chart-card{
+    display: none;
+}
+#options{
+    margin-bottom: 40px;
+}
