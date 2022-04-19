@@ -30,7 +30,7 @@ body{
 }
 
 button{
-    border-radius: 10px;
+    border-radius: 6px;
     border: none;
     background-color: #1f2937;
     color: white;
@@ -124,4 +124,14 @@ button#camera_open, button#camera_close{
 }
 .enable-color{
     background-color: #67bf58;
+}
+
+.new-info{
+    background: #c6d3e4;
+    border-radius: 10px;
+    color: black;
+    width: fit-content;
+    padding: 7px 20px;
+    margin: 5px auto;
+    display: none;
 }

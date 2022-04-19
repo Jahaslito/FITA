@@ -33,3 +33,6 @@ function screeningData(){
 function trainFace(){
     window.location.href="/train_face";
 }
+function identifyFace() {
+    window.location.href="/identify_face";
+}

@@ -85,6 +85,11 @@ $(document).ready(function(){
 var cameraSensor = $("#camera_sensor");
         
     $("#identify-button").click(function(){
+        
+        let info = $("#info");
+        info.css('display','block');
+        info.html('Identifying Face ...');
+
         let imageUrl= getImageUrl();
         $("#identify-button").prop('disabled', true).addClass('disable-color');
         let formData= new FormData();
@@ -97,19 +102,23 @@ var cameraSensor = $("#camera_sensor");
             processData: false,
             success:function(result) {
                 if (result=="ERROR_1") {
+                    info.css('display','none');
                     console.log("No match found");
                     modifiedDisplayMessage("new-error","No much found");
                     $("#identify-button").prop('disabled', false).addClass('enable-color');
                 }else if(result=="ERROR_2"){
+                    info.css('display','none');
                     modifiedDisplayMessage("new-error","Oops,the API is down currently");
                     $("#identify-button").prop('disabled', false).addClass('enable-color');
                     console.log("Oops,something wrong");
                 }else if(result=="ERROR_3"){
+                    info.css('display','none');
                     modifiedDisplayMessage("new-error","No Face Detected");
                     $("#identify-button").prop('disabled', false).addClass('enable-color');
                 }else{
                     // success message
                     // Full name of the identified person will be displayed
+                    info.css('display','none');
                     console.log(result);
                     result= JSON.parse(result);
                     let name= "Name: "+result.name;
@@ -134,6 +143,9 @@ var cameraSensor = $("#camera_sensor");
             },
             error:function(result){
                 console.log(result);
+                modifiedDisplayMessage("new-error","Oops... Something went wrong!");
+                info.css('display','none');
+                $("#identify-button").prop('disabled', false).addClass('enable-color');
             }
         });
     });

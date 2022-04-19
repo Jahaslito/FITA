@@ -97,6 +97,13 @@ clickUploadPhoto.onclick = function () {
 // Using Jquery and AJAX to make requests directly to the server
 $(document).ready(function(){
     $("#train-button").click(function(){
+
+        let info = $("#info");
+        info.css('display','block');
+        info.html('Training Face ...');
+
+        $("#train-button").prop('disabled', true).addClass('disable-color');
+        
         switch (uploadOption) {
             case 1:
                 $("#uploaded-photo").val();
@@ -114,16 +121,22 @@ $(document).ready(function(){
                     processData: false,
                     success:function(result) {
                         if (result=="success") {
+                            info.css('display','none');
                             console.log(result);
                             modifiedDisplayMessage("new-success","Face trained successfully");
+                            $("#train-button").prop('disabled', false).addClass('enable-color');
                         }else{
                             //code for error display
+                            info.css('display','none');
                             modifiedDisplayMessage("new-error",result);
+                            $("#train-button").prop('disabled', false).addClass('enable-color');
                             console.log(result);
                         }                       
                     },
                     error:function(result){
+                        info.css('display','none');
                         console.log(result);
+                        $("#train-button").prop('disabled', false).addClass('enable-color');
                     }
                 });
                 break;
@@ -139,15 +152,21 @@ $(document).ready(function(){
                     processData: false,
                     success:function(result) {
                         if (result=="success") {
+                            info.css('display','none');
                             modifiedDisplayMessage("new-success","Face trained successfully");
+                            $("#train-button").prop('disabled', false).addClass('enable-color');
                         }else{
                             //code for error display
+                            info.css('display','none');
                             modifiedDisplayMessage("new-error",result);
+                            $("#train-button").prop('disabled', false).addClass('enable-color');
                             console.log(result);
                         }
                         
                     },
                     error:function(result){
+                        info.css('display','none');
+                        $("#train-button").prop('disabled', false).addClass('enable-color');
                         console.log(result);
                     }
                 });
@@ -167,17 +186,23 @@ $(document).ready(function(){
                     processData: false,
                     success:function(result) {
                         if (result=="success") {
+                            info.css('display','none');
                             console.log(result);
                             modifiedDisplayMessage("new-success","Face trained successfully");
+                            $("#train-button").prop('disabled', false).addClass('enable-color');
                         }else{
                             //code for error display
+                            info.css('display','none');
                             modifiedDisplayMessage("new-error",result);
+                            $("#train-button").prop('disabled', false).addClass('enable-color');
                             console.log(result);
                         }
                         
                     },
                     error:function(result){
+                        info.css('display','none');
                         console.log(result);
+                        $("#train-button").prop('disabled', false).addClass('enable-color');
                     }
                 });
                 break;

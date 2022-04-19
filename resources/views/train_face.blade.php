@@ -48,6 +48,7 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
             <img src="{{asset($profile_photo_path)}}" alt="">
         </div>
         <button class="save" id="train-button"> Train</button>
+        <p class="new-info" id="info"></p>
     </div>
 
  </div>   

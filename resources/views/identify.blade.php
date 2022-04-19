@@ -13,7 +13,7 @@
 @php 
 $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_photo.jpg': '/storage/photos/'.Auth::user()->profile_photo_path;
 @endphp
- @extends('layouts.user_layout')
+ @extends('layouts.admin_layout')
  @section('content')
 
  <div id="main-container">
@@ -36,6 +36,7 @@ $profile_photo_path= Auth::user()->profile_photo_path==null ? 'images/default_ph
             
         </div>
         <button class="save" id="identify-button"> Identify</button>
+        <p class="new-info" id="info"></p>
     </div>
 
  </div>   

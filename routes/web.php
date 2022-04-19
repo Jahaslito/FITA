@@ -58,12 +58,13 @@ Route::get('disable/{id}', [\App\Http\Controllers\UserController::class, 'disabl
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 #Logic routes face recognition 
-Route::get('/createPersonGroup', [TrainFace::class, 'createPersonGroup'])->middleware('noAccess');
-Route::get('/listPersons', [TrainFace::class, 'listPersons'])->middleware('noAccess');
-Route::get('/deletePerson', [TrainFace::class, 'deletePerson'])->middleware('noAccess');
-Route::get('/deleteFace', [TrainFace::class, 'deleteFace'])->middleware('noAccess');
-Route::get('/trainPersonGroup', [TrainFace::class, 'trainPersonGroup'])->middleware('noAccess');
-Route::get('/identify_face', [HomeController::class, 'identify_face'])->name('identify_face')->middleware('noAccess');;
+Route::get('/createPersonGroup', [TrainFace::class, 'createPersonGroup'])->middleware(['role:admin','noAccess']);
+Route::get('/listPersons', [TrainFace::class, 'listPersons'])->middleware(['role:admin','noAccess']);
+Route::get('/listGroups', [TrainFace::class, 'listPersonGroups'])->middleware(['role:admin','noAccess']);
+Route::get('/deletePerson', [TrainFace::class, 'deletePerson'])->middleware(['role:admin','noAccess']);
+Route::get('/deleteFace', [TrainFace::class, 'deleteFace'])->middleware(['role:admin','noAccess']);
+Route::get('/trainPersonGroup', [TrainFace::class, 'trainPersonGroup'])->middleware(['role:admin','noAccess']);
+Route::get('/identify_face', [HomeController::class, 'identify_face'])->name('identify_face')->middleware(['role:admin','noAccess']);;
 Route::post('/identify_face', [TrainFace::class, 'identifyFace']);
 
 Route::get('/no_access', [HomeController::class, 'no_access']);

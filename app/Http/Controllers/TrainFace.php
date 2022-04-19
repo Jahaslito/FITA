@@ -113,7 +113,7 @@ class TrainFace extends Controller
          
          $faceDetectionResult= $faceAPI->detectFace($imageUrl);
          $faceDetectionResult= json_decode($faceDetectionResult);
-        
+        // return $faceDetectionResult;
          if(count($faceDetectionResult)==0){
             return "No Face Detected";
         }
@@ -193,6 +193,12 @@ class TrainFace extends Controller
         $faceAPI = new FaceAPI();
         return $faceAPI->listPersons();
     }
+
+    public function listPersonGroups(){
+        $faceAPI = new FaceAPI();
+        return $faceAPI->listPersonGroups();
+    }
+
     public function deletePerson(){
         $faceAPI = new FaceAPI();
         return $faceAPI->deletePerson();
@@ -201,11 +207,11 @@ class TrainFace extends Controller
 
     public function deleteFace(){
         $faceAPI = new FaceAPI();
-        $faceAPI->deleteFace();
+        return $faceAPI->deleteFace();
     }
     public function trainPersonGroup(){
         $faceAPI = new FaceAPI();
-        $faceAPI->trainPersonGroup(); 
+        return $faceAPI->trainPersonGroup(); 
     }
 
     public function identifyFace(Request $request){
@@ -234,7 +240,7 @@ class TrainFace extends Controller
         #Detecting a face in the image
         $faceDetectionResult= $faceAPI->detectFace($imageUrl);
         $faceDetectionResult= json_decode($faceDetectionResult);
-        
+        // return $faceDetectionResult;
         if(count($faceDetectionResult)==0){
             return "ERROR_3";
         }
@@ -253,7 +259,8 @@ class TrainFace extends Controller
                     //return $identifiedUserFullName;
 
                     #Checking if the user's attendance is taken for the day 
-                    $date= now()->format('F')." ".now()->format('d')." ".now()->format('Y');
+                    date_default_timezone_set('Africa/Nairobi');
+                    $date = date('F'). " ".date('d')." ".date('Y');
                     $data= Log::where("user_id",$identifiedUserId)->where("date",$date)->first();
                     //return json_encode($data);
                     #if the user's attendance is taken 

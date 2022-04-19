@@ -221,9 +221,44 @@ class FaceAPI {
             echo $ex;
         }
     }
+
+    public function listPersonGroups(){
+        $personGroupId= "trained_students_1";
+        $request = new Http_Request2($this->uriBase.'persongroups/');
+        $url = $request->getUrl();
+
+        $headers = array(
+            'Ocp-Apim-Subscription-Key' => env('ocpApimSubscriptionKey'),
+        );
+
+        $request->setHeader($headers);
+
+        $parameters = array(
+            // Request parameters
+            'top' => '100',
+            'returnRecognitionModel' => 'false',
+        );
+
+        $url->setQueryVariables($parameters);
+
+        $request->setMethod(HTTP_Request2::METHOD_GET);
+
+        // Request body
+        // $request->setBody("{body}");
+
+        try
+        {
+            $response = $request->send();
+            return ($response->getBody());
+        }
+        catch (HttpException $ex)
+        {
+            echo $ex;
+        }
+    }
     public function deletePerson(){
         $personGroupId= "trained_students_1";
-        $personId="6b4af8a5-7e9f-429d-80c5-de90d6432bcb"; 
+        $personId="34f15480-fa28-4695-8376-c50a319143db"; 
         $request = new Http_Request2($this->uriBase."persongroups/".$personGroupId."/persons/".$personId);
         $url = $request->getUrl();
 
@@ -248,8 +283,8 @@ class FaceAPI {
     }
     public function deleteFace(){
         $personGroupId= "trained_students_1";
-        $personId="d769bf6a-a2ce-48fa-a0d5-f7b60c69ae26"; 
-        $persistedFaceId="4cec52e0-43a2-4786-8b03-a87cf0800e93";
+        $personId="34f15480-fa28-4695-8376-c50a319143db"; 
+        $persistedFaceId="349e79c0-06d9-486f-a7c9-5fa318bda070";
         $request = new Http_Request2($this->uriBase.'persongroups/'.$personGroupId.'/persons/'.$personId.'/persistedFaces/'.$persistedFaceId);
         $url = $request->getUrl();
 
